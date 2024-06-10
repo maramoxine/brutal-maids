@@ -1,0 +1,23 @@
+TO DO
+
+:v
+
+do hit stop DONE
+do hit flash DONE
+new attack floor slam DONE (wip: need animations & refactoring)
+make em look :) DONE
+make the bouncing state DONE
+read about sf hitbox values & damages DONE
+refactor hitbox values DONE
+refactor attacks DONE
+do props & enemies fdifferent parents DONE
+add that fucking trash can DONE
+play castle crashers DONE
+
+do bounciness on enemies
+do knockdown on enemies
+change sprites to COWBOY
+change moveset and shit
+
+
+https://glslsandbox.com/e#108652.1 is acool fx
