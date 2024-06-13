@@ -1,8 +1,8 @@
 /// @description 
 
 #region controls
-var haxis = sign(round(gamepad_axis_value(0, gp_axislh) *1.7))
-var vaxis = sign(round(gamepad_axis_value(0, gp_axislv) *1.7))
+var haxis = sign(round(gamepad_axis_value(0, gp_axislh) *2))
+var vaxis = sign(round(gamepad_axis_value(0, gp_axislv) *2.3))
 
 kright	= keyboard_check(ord("D")) 
 	|| gamepad_button_check(0, gp_padr) || (haxis==1)
@@ -45,8 +45,6 @@ state_timer		= state_is_new ? 0 : state_timer + 1
 // Movement after all state calculations
 round_vel()
 
-//var temp_mask = mask_index
-//mask_index = sPlayerMask
 if !move_x(xvel_int, true)
 {
     xvel       = 0

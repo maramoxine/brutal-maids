@@ -8,9 +8,9 @@ uniform float Time;
 uniform vec2 Texel;
 
 //Modify the following three consts to change the wave effect to your liking
-const float xSpeed = 2.5;
-const float xFreq = 10.0;
-const float xSize = 4.;
+const float xSpeed = 3.5;
+const float xFreq = 8.0;
+const float xSize = 6.;
 
 void main()
 {

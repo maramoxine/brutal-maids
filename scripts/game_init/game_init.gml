@@ -10,6 +10,9 @@ gpu_set_tex_filter(0);
 
 }
 
+#macro STAGEST 0
+#macro SELECTSTAGE:STAGEST 1
+
 #macro draw_solids true
 #macro bbox_depth bbox_bottom -room_height
 #macro die instance_destroy()

@@ -8,4 +8,4 @@ side_dir = 1
 timer		= 60 *3
 image_speed	= 1 /2
 
-mask_index = sEntityMask
+mask_index = sEntitySmall

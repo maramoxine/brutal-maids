@@ -1,10 +1,11 @@
 /// ----------------------
 function player_postState(){
 	// balloon bounce
-	var _en = coll_y(yvel, oBalloon)
+	var _en = instance_place(x, y +yvel, oBalloon)
 
-	if _en && yvel && _en.y+4 >y
+	if _en && !grounded && _en.y+4 >bbox_bottom
 	&& state_current!=playerStateBounce{
+		move_y(_en.bbox_top -bbox_bottom, self)
 		jump_hold = -1
 		yvel = jump_spd *1.32; yvel_fract = 0
 		if state_current== playerStateFree {
@@ -95,13 +96,19 @@ function player_sprites(){
 			switch(anim){
 				case 0:
 					if !(walk || abs(_xaxis)){
-						image_speed = 1 /4
-						return sPlayerIdle
+						if (kup){
+							image_speed = 1 /4
+							return sPlayerIdleUp
+						}
+						else{
+							image_speed = 1 /4
+							return sPlayerIdle
+						}
 					}
 					else{
 						if frame_current != _frm
 							switch(_frm){
-								case 0: case 3:
+								case 0:
 								part_particles_create(global.fx2, x, bbox_bottom -2, global.fxWalk, 1)
 								audio_play_sfx(aSfxPlayerStep, -1, 0.3)
 								break;
@@ -119,31 +126,17 @@ function player_sprites(){
 					image_speed = 1 /2
 					return sPlayerLandWalk
 				break;
-				case 5:
-					image_speed = 1 /2
-					return sPlayerCrouchEndAnim
-				break;
 				case 7:
 					image_speed = 1 /4
 					return sPlayerTurnWalk
 				break;
 				case 8:
-					image_speed = 1 /2
-					return sPlayerTurnIdle
+					image_speed = 1 /4
+					return sPlayerWalkStart
 				break;
 			}
 		}
 	}
-	else{
-		if (anim== 0){
-			image_speed = 1 /2
-			return sPlayerCrouched
-		}
-		else if (anim==1){
-			image_speed = 1 /2
-			return sPlayerCrouchAnim
-		}
-	}
+	
 	return sprite_index;
-
 }

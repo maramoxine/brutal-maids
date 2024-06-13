@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"game_init",
   "parent":{
-    "name":"misc scripts",
-    "path":"folders/Scripts/misc scripts.yy",
+    "name":"joguinho",
+    "path":"joguinho.yyp",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

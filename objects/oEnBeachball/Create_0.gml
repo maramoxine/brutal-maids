@@ -14,6 +14,6 @@ bounce_wall_dir = 1
 
 bounce_timer = 0
 
-mask_index = sEntityMask3
+mask_index = sEntityBigNRound
 
 anim = 0

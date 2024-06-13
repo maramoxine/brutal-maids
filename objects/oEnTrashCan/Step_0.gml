@@ -13,7 +13,7 @@ var empty_can = function(){
 	o.side_dir = _s
 	o.xvel = (0.8 *_s) +xvel
 	o.yvel = -2.2 +yvel *0.4
-	mask_index = sEntityMask
+	mask_index = sEntitySmall
 }
 
 switch(state_current){

@@ -40,6 +40,17 @@ switch (testmode){
 	view_y = clamp(view_y , 0 +gh, room_height -gh )
 	
 	break;
+	case 3:
+		
+	var _x = lerp(rm_x, target.x, 0.3)
+	var _y = lerp(rm_y, target.y, 0.3 )
+	_x = clamp(_x, 0 +gw, room_width -gw )
+	_y = clamp(_y, 0 +gh, room_height -gh )
+		
+	view_x = lerp( view_x, _x, 0.05)
+	view_y = lerp( view_y, _y, 0.05)
+		
+	break;
 }
 
 
@@ -48,5 +59,5 @@ switch (testmode){
 camera_set_view_pos(cam, view_x -global.gameWidth /2,
 view_y -global.gameHeight /2)
 
-if (keyboard_check_pressed(vk_tab))
+if (keyboard_check_pressed(vk_tab) &&STAGEST)
 testmode = testmode=2 ? 0 : testmode +1

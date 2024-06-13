@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sEnMisc",
-    "path":"sprites/sEnMisc/sEnMisc.yy",
+    "name":"sEnEnemy",
+    "path":"sprites/sEnEnemy/sEnEnemy.yy",
   },
   "spriteMaskId":null,
   "visible":true,

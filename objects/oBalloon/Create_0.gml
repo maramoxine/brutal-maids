@@ -2,7 +2,7 @@
 
 platformer_init()
 
-mask_index = sEntityMask3
+mask_index = sEntityBigNRound
 jump_an = 0
 
 move_dir = 0

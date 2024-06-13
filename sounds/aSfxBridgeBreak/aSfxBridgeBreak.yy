@@ -12,8 +12,8 @@
   "duration":1.237311,
   "name":"aSfxBridgeBreak",
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

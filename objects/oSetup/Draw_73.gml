@@ -7,18 +7,19 @@ var vx = camera_get_view_x(view_camera[0])
 ,	ww = window_get_width()
 ,	wh = window_get_height()
 
-var _bc = "f4 pa pantalla completa papito"
+var _bc = "f4 fullscreen"
 if os_browser != browser_not_a_browser 
-	_bc = "f10 pa pantalla completa papito"
+	_bc = "f10 fullscreen"
 
 draw_set_halign(fa_right)
-draw_text(vx +vw -8, vy, _bc)
+draw_text(vx +vw -8, vy +8
+, _bc)
 
-draw_text(vx +vw -8, vy +8, $"gamepad connected {gamepad_is_connected(0)}")
+//draw_text(vx +vw -8, vy +8, $"gamepad connected {gamepad_is_connected(0)}")
 draw_text(vx +vw -8, vy +16, $"fps {fps}")
-draw_text(vx +vw -8, vy +24, $"display {display_get_width()} {display_get_height()}")
-draw_text(vx +vw -8, vy +32, $"window {window_get_width()} {window_get_height()}--")
-draw_text(vx +vw -8, vy +40, $"surface {surface_get_width(application_surface)} {surface_get_height(application_surface)}")
+//draw_text(vx +vw -8, vy +24, $"display {display_get_width()} {display_get_height()}")
+draw_text(vx +vw -8, vy +24, $"by maramoxine <3")
+//draw_text(vx +vw -8, vy +40, $"surface {surface_get_width(application_surface)} {surface_get_height(application_surface)}")
 
 //draw_text(vx +vw -8, vy +48, "resolution " +string(global.resolution))
 //draw_text(vx +vw -8, vy +56, "zoom " +string(global.zoom))

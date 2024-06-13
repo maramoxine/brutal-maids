@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPlayerMask",
-    "path":"sprites/sPlayerMask/sPlayerMask.yy",
+    "name":"sEntityPlayer",
+    "path":"sprites/sEntityPlayer/sEntityPlayer.yy",
   },
   "spriteMaskId":null,
   "visible":true,

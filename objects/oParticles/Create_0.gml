@@ -9,8 +9,8 @@ part_system_depth(global.fx2, 999 );
 global.fxRocketSmoke = part_type_create()
 part_type_life(global.fxRocketSmoke, 25, 25)
 part_type_sprite(global.fxRocketSmoke, sFxRocketSmoke, 1, 1, 0)
-part_type_direction(global.fxRocketSmoke, 220, 320, 0, 15)
-part_type_speed(global.fxRocketSmoke, 1, 3, -0.1, 0)
+part_type_direction(global.fxRocketSmoke, 0, 360, 0, 15)
+part_type_speed(global.fxRocketSmoke, 0.1, 2, -0.1, 0)
 
 global.fxLand = part_type_create()
 part_type_life(global.fxLand, 25, 25)

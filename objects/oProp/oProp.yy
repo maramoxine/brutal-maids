@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sEntityMask",
-    "path":"sprites/sEntityMask/sEntityMask.yy",
+    "name":"sEntitySmall",
+    "path":"sprites/sEntitySmall/sEntitySmall.yy",
   },
   "spriteMaskId":null,
   "visible":true,

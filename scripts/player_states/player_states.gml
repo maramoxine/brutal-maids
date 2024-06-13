@@ -10,20 +10,15 @@ function playerStateFree(){
 	
 		coyote = 11
 	
-		if (kdown){
-			if (kjump) // go down platform
-				if on_platform() && (!on_wall() || on_slope()){
-					move_y(1, self, 1)	
-					if hold_id move_y(1, hold_id, 1)	
-				}
-		
-			if (!crouched){ // begin the crouch
-				//anim = 1 ind_r;
-				audio_play_sfx(aSfxPlayerCrouch, aSfxPlayerCrouch, 0)
-				crouched = 1
-				mask_index = sEntityMask
-			}
+		if (kdown&& kjump) // go down platform
+			if on_platform() && (!on_wall() || on_slope()){
+				move_y(1, self, 1)
+				coyote = 0
+				yvel = 1.
+				yvel_fract = 0.0
+				if hold_id move_y(1, hold_id, 1)
 		}
+		
 		if (!ground_was){
 			anim = abs(xaxis)&&!crouched ? (abs(xvel /2) ? 1: 1) : 1
 			audio_play_sound(aSfxLand, 0, 0)
@@ -31,10 +26,10 @@ function playerStateFree(){
 		}
 	}
 
-	if ((!kdown || !grounded) && crouched){ // leave the crouch
-		crouched = 0; 
-		mask_index = sEntityMask
-	}
+	//if ((!kdown || !grounded) && crouched){ // leave the crouch
+	//	crouched = 0; 
+	//	mask_index = sEntityMask
+	//}
 
 	ground_was = grounded
 
@@ -55,11 +50,8 @@ function playerStateFree(){
 
 	if abs(_xaxis)
 	{	
-		if side_dir != xaxis && grounded{
-			if abs(xvel) anim = 7
-			side_dir = xaxis
-			ind_r
-			}
+		side_dir = xaxis
+
 		var _l = !(sign(xvel)==xaxis && abs(xvel)>move_spd && !grounded) 
 		var move_acc_final = grounded? move_acc : move_acc_air
 		if _l xvel = approach(xvel, ts* xaxis, move_acc_final)
@@ -132,64 +124,97 @@ function playerStateFree(){
 	#endregion
 
 	#region attacks --------------
-	var sd = side_dir
-	if (xaxis != 0 && xaxis != side_dir) sd = xaxis
-	hold_xpos = sd *8
-	hold_ypos =  yaxis *8 -4;
+	var sd= side_dir
+	//if (xaxis != 0 && xaxis != side_dir) sd = xaxis
+	atk_dir = (kdown && !grounded)? 270 : (kup? 90: (sd? 0 : 180));
+	
+	var gx = lengthdir_x(24, atk_dir)
+	var gy = lengthdir_y(24, atk_dir)
 
-	if kattack || attack_inp_delay{
-
-		state_current = playerStateWeakJab
-		attack_inp_delay = 0
-		exit;
-	}
-
-	if (kgrab){
-		if hold_id {
-			if !kdown{
-				hold_id.xvel = sd *2.3 +(xvel *0.3)
-				hold_id.yvel = -1 +(yvel *0.5)
-				if (kup){
-					hold_id.xvel = xvel
-					hold_id.yvel = -4
-					}
-				audio_play_sfx(aSfxLongJump, 0, 0.2)
-				}
-			else{
-				hold_id.xvel = 0
-				hold_id.yvel = 0
-				if (!grounded){
-				
-					hold_id.xvel = 0
-					hold_id.yvel = 4	
-					audio_play_sfx(aSfxLongJump, 0, 0.2)
-					anim = 2; ind_r
-					jump_hold = -1
-					yvel = -5.4
-					yvel_fract = 0
-					xvel = 0
-				}
-			
-			}
-			move_x((x +hold_xpos) -hold_id.x, 1, hold_id)
-			move_y((y +hold_ypos) -hold_id.y, hold_id)
+	if (atk_buffer) atk_buffer --;
+	atk_fx = lerp(atk_fx, 0, 0.4)
+	
+	if (kattackdw && !atk_buffer)
+	{
+		var bul = instance_create_depth(x ,y , -1, oBullet)
+		move_x(gx, 1, bul)
+		move_y(gy, bul)
+		bul.move_dir =atk_dir +random_range(-3, 3)
+		//part_particles_create(global.fx, bul.x, bul.y, global.fxRocketSmoke, 1)
 		
-			hold_id = noone
-		}
-		else{
-
-			var e = instance_place(x, y, oEnemy)
-			if e && e.can_grab 
-			//&& (object_get_parent(e.object_index)== oProp)
-			{
-				hold_id = e
-				hold_id.grabber_id = id
-				hold_id.state_current = enemyState.grabbed
-				hold_id.state_prev = -1
-				audio_play_sfx(aSfxGrabMisc, 0.5)
-			}
+		atk_fx = 1
+		atk_buffer = atk_buffer_max
+		audio_play_sfx(aSfxGunFunny, -1, 0.2)
+		switch(round(atk_dir /90))
+		{
+			default:
+			
+			break;
+			case 1: 
+			break;
+			case 3:
+				yvel = yvel+1? 0 : yvel;
+				yvel_fract = yvel+1? 0 : yvel_fract;
+			break;
 		}
 	}
+	
+	//hold_xpos = sd *8
+	//hold_ypos =  yaxis *8 -4;
+
+	//if (kattack || attack_inp_delay){
+
+	//	state_current = playerStateWeakJab
+	//	attack_inp_delay = 0
+	//	exit;
+	//}
+
+	//if (kgrab){
+	//	if hold_id {
+	//		if !kdown{
+	//			hold_id.xvel = sd *2.3 +(xvel *0.3)
+	//			hold_id.yvel = -1 +(yvel *0.5)
+	//			if (kup){
+	//				hold_id.xvel = xvel
+	//				hold_id.yvel = -4
+	//				}
+	//			audio_play_sfx(aSfxLongJump, 0, 0.2)
+	//			}
+	//		else{
+	//			hold_id.xvel = 0
+	//			hold_id.yvel = 0
+	//			if (!grounded){
+				
+	//				hold_id.xvel = 0
+	//				hold_id.yvel = 4	
+	//				audio_play_sfx(aSfxLongJump, 0, 0.2)
+	//				anim = 2; ind_r
+	//				jump_hold = -1
+	//				yvel = -5.4
+	//				yvel_fract = 0
+	//				xvel = 0
+	//			}
+			
+	//		}
+	//		move_x((x +hold_xpos) -hold_id.x, 1, hold_id)
+	//		move_y((y +hold_ypos) -hold_id.y, hold_id)
+		
+	//		hold_id = noone
+	//	}
+	//	else{
+
+	//		var e = instance_place(x, y, oEnemy)
+	//		if e && e.can_grab 
+	//		//&& (object_get_parent(e.object_index)== oProp)
+	//		{
+	//			hold_id = e
+	//			hold_id.grabber_id = id
+	//			hold_id.state_current = enemyState.grabbed
+	//			hold_id.state_prev = -1
+	//			audio_play_sfx(aSfxGrabMisc, 0.5)
+	//		}
+	//	}
+	//}
 	#endregion
 	
 	sprite_index = player_sprites()

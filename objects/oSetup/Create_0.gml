@@ -3,7 +3,7 @@
 game_init()
 global.font1 = font_add_sprite(sFont1, ord("!"),1 , -1 )
 draw_set_font(global.font1)
-global.fullscreen = window_get_fullscreen();
+global.fullscreen = 0
 
 application_surface_draw_enable(false)
 

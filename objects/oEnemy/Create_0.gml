@@ -25,4 +25,4 @@ state_timer = 0
 target		= oPlayer
 grabber_id	= noone
 
-mask_index	= sEntityMask
+mask_index	= sEntitySmall

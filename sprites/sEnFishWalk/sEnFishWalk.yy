@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"enemies",
-    "path":"folders/Sprites/enemies.yy",
+    "name":"goon",
+    "path":"folders/Sprites/enemies/goon.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

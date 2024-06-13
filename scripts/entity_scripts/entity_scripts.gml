@@ -106,15 +106,18 @@ function grab_state_end(){
 
 /// ----------------------
 function ent_postState(){
-	/// @arg bounce
-	/// @arg col_ignore
-	/// @arg hit_stop_do
+	/// @arg [bounce]
+	/// @arg [col_ignore]
+	/// @arg [hit_stop_do]
+	/// @arg [collision_function]
 
 	var _bounce = true
 	var _col_ignore = false
 	var _hit_d = true
+	var _funct = 0
 
 	switch(argument_count){
+		case 4: _funct = argument[3]
 		case 3: _hit_d = argument[2]
 		case 2: _col_ignore = argument[1]
 		case 1: _bounce = argument[0]
@@ -149,12 +152,13 @@ function ent_postState(){
 
 	if !move_x(_xf, true, self, _col_ignore)
 	{
+		if (_funct != 0) method_call(_funct,[])
 		xvel		= 0
 		xvel_fract	= 0
 	}
-	// Use the yvel_int hereA 
 	if !move_y(_yf, self, _col_ignore)
 	{
+		if (_funct != 0) method_call(_funct,[])
 		yvel		= 0
 		yvel_fract	= 0
 	}
