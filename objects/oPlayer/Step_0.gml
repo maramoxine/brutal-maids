@@ -36,11 +36,13 @@ yaxis	= kdown - kup
 grounded = on_ground()
 
 // Simple State Machine
+
+state_is_new		= state_prev != state_current
+state_timer		= state_is_new ? 0 : state_timer + 1
 state_prev	= state_current
 script_execute(state_current)
 player_postState()
-state_is_new		= state_prev != state_current
-state_timer		= state_is_new ? 0 : state_timer + 1
+
 
 // Movement after all state calculations
 round_vel()
@@ -58,5 +60,4 @@ if !move_y(yvel_int)
     yvel_fract = 0
 }
 
-depth = bbox_depth
 //mask_index = temp_mask

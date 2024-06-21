@@ -1,5 +1,8 @@
 /// @description 
 
+atk_fx = lerp(atk_fx, 0, 0.2)
+gun_rfx = angle_lerp(gun_rfx, atk_dir, 0.6, 360)
+
 var wp_walk = 0
 if sprite_index = sPlayerWalk
 	switch(floor(image_index)){
@@ -8,15 +11,22 @@ if sprite_index = sPlayerWalk
 		case 2: wp_walk = 1;
 	}	
 
-var gx = lengthdir_x(14, atk_dir) +side_dir *5
-var gy = lengthdir_y(14, atk_dir)
+var gx = lengthdir_x(10, gun_rfx) +side_dir *3
+var gy = lengthdir_y(12, gun_rfx)
 
 gun_xfx = lerp(gun_xfx, gx, 0.5)
 gun_yfx = lerp(gun_yfx, gy, 0.5)
 
-draw_sprite_ext(sWpSubmachinegun, 0,
+draw_sprite_ext(sWpPistol, 0,
 x+ gun_xfx *(1 -0.7*atk_fx), y+ gun_yfx*(1 -0.7*atk_fx) +wp_walk -2, 
-1 , side_dir, atk_dir, -1, 1)
+(1 -0.3 *atk_fx) , side_dir *(1 +0.3 *atk_fx)
+, round(gun_rfx/45)*45 //+ round(side_dir*atk_fx*15)
+, -1, 1)
+
+var dr_ = 1
+if (!can_hurt && invin_frames) dr_ = (floor(invin_frames /1) mod 2);
+
+if dr_
 draw_sprite_ext(sprite_index, image_index, x, y, 
 side_dir , 1, 0, -1, 1)
 

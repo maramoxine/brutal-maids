@@ -2,7 +2,7 @@
   "$GMWindowsOptions":"",
   "%Name":"Windows",
   "ConfigValues":{
-    "SELECTSTAGE":{
+    "Selectstage":{
       "option_windows_allow_fullscreen_switching":"true",
       "option_windows_resize_window":"true",
     },

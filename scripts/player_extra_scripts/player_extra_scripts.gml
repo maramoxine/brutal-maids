@@ -1,5 +1,18 @@
 /// ----------------------
 function player_postState(){
+	
+	can_hurt = 1
+	// invincibility frames
+	if invin_frames {
+		invin_frames--;
+		can_hurt = 0
+	}
+	// being hurt
+	if (state_current = playerStateHurt) can_hurt = 0
+	
+	// loop through screen
+	entity_loop()
+	
 	// balloon bounce
 	var _en = instance_place(x, y +yvel, oBalloon)
 
@@ -7,7 +20,7 @@ function player_postState(){
 	&& state_current!=playerStateBounce{
 		move_y(_en.bbox_top -bbox_bottom, self)
 		jump_hold = -1
-		yvel = jump_spd *1.32; yvel_fract = 0
+		yvel = jump_spd -0.5; yvel_fract = 0
 		if state_current== playerStateFree {
 			anim = 2;
 			image_index = 0 
@@ -17,7 +30,7 @@ function player_postState(){
 			jump_an = 1; image_index = 0
 		}
 	}
-
+	
 	// enemy bounce
 	var _en = instance_place(x +xvel, y +6 +max(0 ,yvel), oEnemy)
 	if (_en && kjumpdw){
@@ -39,7 +52,7 @@ function player_postState(){
 		}
 	}
 	bounce_t = (bounce_t>=0)? bounce_t-1 : -1
-
+	
 }
 
 /// ----------------------

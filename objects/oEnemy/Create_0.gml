@@ -1,6 +1,11 @@
 /// @description 
 
 platformer_init();
+xvel_stop = 0.
+yvel_stop = 0.
+
+hp = 4
+hp_max = hp
 
 move_fri	= 0.15
 move_fri_air= 0
@@ -11,18 +16,23 @@ vsp_max		= 7
 side_dir	= 1
 hit_stop	= 0
 hit_timer	= 60
+hit_inst = 1
+damage_hit = function(){
+	
+	//state_current = 2
+	//state_prev	= -1
+}
 
-can_bounce	= true
+can_bounce	= false
 can_push	= true
 can_hit		= true
-can_grab	= true
-do_draw		= true;
 
 state_is_new = true
-state_current = 3
+state_current = enemyState.free
 state_prev	= 10
 state_timer = 0
 target		= oPlayer
-grabber_id	= noone
+vox = 0
 
 mask_index	= sEntitySmall
+depth = -1

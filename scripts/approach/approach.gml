@@ -1,4 +1,7 @@
 function approach(){
+/// @arg a
+/// @arg b
+/// @arg amount
 // Moves "a" towards "b" by "amount" and returns the result
  
 	if (argument[0] < argument[1])

@@ -73,25 +73,6 @@ switch(state_current){
 		
 		state_current = (state_timer>=25)? 1 : state_current
 	break;
-	case enemyState.grabbed: // =====================================================
-		if state_is_new{
-			state_is_new = !state_is_new
-			xvel = 0
-			yvel = 0
-			do_draw = false
-		}
-	
-		var plc = !instance_place(x, y, grabber_id)
-		if (!grabber_id || grabber_id.hold_id != id) || plc{
-			do_draw = 1
-			state_current = 1
-			exit
-		}
-	
-		position_to_object(grabber_id, self, 0)
-	
-	break;
 }
 
 ent_postState(1);
-depth = bbox_depth

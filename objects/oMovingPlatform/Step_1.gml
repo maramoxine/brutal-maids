@@ -8,6 +8,8 @@ y_move_dir *= coll_y(y_move_dir) ? -1 : 1
 xvel = approach(xvel, x_move_dir *move_spd, move_acc)
 yvel = approach(yvel, y_move_dir *move_spd, move_acc)
 
+moving_loop()
+
 if !move_platform_x(xvel_int)
 {
     xvel       = 0

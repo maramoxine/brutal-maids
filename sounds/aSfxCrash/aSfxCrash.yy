@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.835918,
+  "duration":0.0,
   "name":"aSfxCrash",
   "parent":{
     "name":"General",

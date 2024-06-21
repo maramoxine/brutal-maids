@@ -1,12 +1,20 @@
 /// @description 
 
-if !keyboard_check(vk_shift) exit
-
 var vx = camera_get_view_x(view_camera[0])
 ,	vy = camera_get_view_y(view_camera[0])
 ,	vh = camera_get_view_height(view_camera[0])
 
-//#region shit
+var bfx = atk_fx *3
+
+if !keyboard_check(vk_shift){
+	draw_sprite(sUiAmmo,0,vx +8 +bfx, vy +8 +bfx)
+	draw_set_font(global.fontAmmo)
+	draw_text( vx +16 +bfx, vy +8 +bfx, $"{ammo}")
+	draw_set_font(global.font1)
+	exit
+}
+
+#region shit
 
 draw_text(vx +8, vy +8 , $"x {x}")
 draw_text(vx +8, vy +16, $"y {y}")
@@ -23,8 +31,10 @@ $"attacked enemies {ds_list_size(hit_by_atk)} - hitnow {ds_list_size(hitnow)}")
 var i = 0;
 repeat(ds_list_size(hit_by_atk)){
 	var d_ =  hit_by_atk[|i]
-	draw_text(vx +8, vy +112 +8*i ,
-	$"{ds_list_find_index(hit_by_atk, d_)} {object_get_name(d_.object_index)} {d_}")
+	var instd = $"{ds_list_find_index(hit_by_atk, d_)} {d_}"
+	if instance_exists(d_)
+		instd = $"{ds_list_find_index(hit_by_atk, d_)} {object_get_name(d_.object_index)} {d_}"
+	draw_text(vx +8, vy +112 +8*i , instd)
 	i++;
 }
 
@@ -37,3 +47,4 @@ draw_arrow(vx +48, vy+(vh-32), vx +48 + haxis *16, vy+(vh-32) + vaxis *16, 6)
 var _haxis = gamepad_axis_value(0, gp_axislh)
 var _vaxis = gamepad_axis_value(0, gp_axislv)
 draw_arrow(vx +48, vy+(vh-32), vx +48 + _haxis *16, vy+(vh-32) + _vaxis *16, 12)
+#endregion

@@ -7,11 +7,10 @@ global.resolution = 1
 global.zoom = 2
 global.fullscreen = false
 gpu_set_tex_filter(0);
-
 }
 
 #macro STAGEST 0
-#macro SELECTSTAGE:STAGEST 1
+#macro Selectstage:STAGEST 1
 
 #macro draw_solids true
 #macro bbox_depth bbox_bottom -room_height
@@ -26,6 +25,4 @@ enum enemyState // constant states
 	idle = 3,
 	kdown = 4,
 	stomp = 5,
-	grabbed = 6,
-	thrown = 7
 }

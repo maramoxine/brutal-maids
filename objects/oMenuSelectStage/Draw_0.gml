@@ -9,7 +9,7 @@ var rw = global.gameWidth
 //draw_set_halign(fa_middle)
 draw_set_valign(fa_center)
 draw_set_font(font2)
-var select_separ = 11
+var select_separ = 13
 
 var time = (current_time /60) /10
 var rm_amount = string_char_at(string(room_last), string_length(string(room_last)))

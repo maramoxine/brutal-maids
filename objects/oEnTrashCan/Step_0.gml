@@ -5,17 +5,6 @@ grounded = on_ground()
 var _prev = state_prev
 ent_state_machine()
 
-var empty_can = function(){
-	emptied_fx = true
-	audio_play_sfx(aSfxCrash, aSfxCrash)
-	var o = instance_create_depth(x, bbox_top, 0, oFxPart)
-	var _s = choose(-1 ,1)
-	o.side_dir = _s
-	o.xvel = (0.8 *_s) +xvel
-	o.yvel = -2.2 +yvel *0.4
-	mask_index = sEntitySmall
-}
-
 switch(state_current){
 	case enemyState.free: case enemyState.idle:
 		if state_is_new{
@@ -62,7 +51,7 @@ switch(state_current){
 		if (_xv == side_dir) || en_
 			{
 			if en_{		
-				ent_enemyDamage(en_, 1.5, -1.2, 0, stuns, hitts)
+				ent_enemyDamage(en_, 1.5, -1.2, stuns, hitts)
 				//audio_play_sound(aSfxWeakHit1, 0, 0)
 				}
 				
@@ -96,30 +85,6 @@ switch(state_current){
 		if abs(xvel) side_dir = sign(xvel)
 		
 	break;
-	case enemyState.hit: // =====================================================
-		if state_is_new{
-			sprite_index = sEnTrashCanAir
-			image_speed = 1/2
-			image_index = 0
-			state_is_new = !state_is_new
-			if (emptied_fx)
-				audio_play_sfx(aSfxTrashCanHit, aSfxTrashCanHit, 0.2)
-		}
-		
-		var move_fri_final	= grounded? move_fri : move_fri_air
-		if hit_stop move_fri_final = 0
-		xvel = approach(xvel, 0, move_fri_final)
-		if !(grounded||hit_stop)
-			yvel = approach(yvel, vsp_max, grav)
-			
-		if (!emptied_fx){
-			empty_can();
-		}
-		
-		var f_s = 1;
-		if abs(xvel) >0.5 && !grounded f_s = 21
-		state_current = (state_timer>=15)? f_s : state_current
-	break;
 	case enemyState.stomp: // =====================================================
 		if state_is_new{
 			sprite_index = 
@@ -130,23 +95,6 @@ switch(state_current){
 		}
 		state_current = (state_timer>=25)? 1 : state_current
 	break;
-	case enemyState.grabbed:
-		if state_is_new{
-			state_is_new = !state_is_new
-			do_draw = false
-		}
-		
-		if (!grabber_id || grabber_id.hold_id != id){
-			do_draw = 1
-			var f_s = emptied_fx? 21 : 1
-				state_current = f_s
-			exit
-		}
-	
-		var plc = !instance_place(x, y, grabber_id)
-		position_to_object(grabber_id, self, plc)
-		
-	break;
 }
 
 if (vox && state_current != 21) || (state_current = 21 && !grounded){
@@ -155,4 +103,3 @@ if (vox && state_current != 21) || (state_current = 21 && !grounded){
 }
 
 ent_postState();
-depth = bbox_depth

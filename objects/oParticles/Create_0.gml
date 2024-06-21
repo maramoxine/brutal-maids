@@ -2,7 +2,6 @@
 
 global.fx = part_system_create();
 part_system_depth(global.fx, -999 );
-
 global.fx2 = part_system_create();
 part_system_depth(global.fx2, 999 );
 
@@ -26,3 +25,11 @@ part_type_sprite(global.fxWood1, sFxWoodSmall, 1, 0, 0)
 part_type_direction(global.fxWood1, 45, 135, 0, 0)
 part_type_speed(global.fxWood1, 1, 3, 0, 0) 
 part_type_gravity(global.fxWood1, 0.1, 270) 
+
+global.fxExplosionSm = part_type_create()
+part_type_life(global.fxExplosionSm, 32, 32)
+part_type_sprite(global.fxExplosionSm, sFxExplosionSmall, 1, 1, 0)
+
+global.fxEnemyDie = part_type_create()
+part_type_life(global.fxEnemyDie, 24, 24)
+part_type_sprite(global.fxEnemyDie, sFxEnemyDie, 1, 1, 0)

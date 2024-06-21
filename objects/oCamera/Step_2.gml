@@ -42,13 +42,13 @@ switch (testmode){
 	break;
 	case 3:
 		
-	var _x = lerp(rm_x, target.x, 0.3)
-	var _y = lerp(rm_y, target.y, 0.3 )
+	var _x = lerp(rm_x, target.x, 0.5)
+	var _y = lerp(rm_y, target.y, 0.5 )
 	_x = clamp(_x, 0 +gw, room_width -gw )
 	_y = clamp(_y, 0 +gh, room_height -gh )
 		
-	view_x = lerp( view_x, _x, 0.05)
-	view_y = lerp( view_y, _y, 0.05)
+	view_x = lerp( view_x, _x, 0.15)
+	view_y = lerp( view_y, _y, 0.15)
 		
 	break;
 }

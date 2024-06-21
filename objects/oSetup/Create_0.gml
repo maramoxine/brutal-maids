@@ -1,14 +1,14 @@
 /// @description 
 
+persistent = true
+
 game_init()
 global.font1 = font_add_sprite(sFont1, ord("!"),1 , -1 )
 draw_set_font(global.font1)
 global.fullscreen = 0
+global.fontAmmo = font_add_sprite(sAmmoFont, ord("!"),0 , 0)
 
 application_surface_draw_enable(false)
-
-persistent = true
-
 if (!instance_exists(oCamera))
 	instance_create_depth(0, 0, 0, oCamera)
 

@@ -1,11 +1,11 @@
 /// @description 
 
 var _dr	= 1
-if (timer <40) _dr	= floor(timer /2) mod 2
+if fade && (timer <40) _dr	= floor(timer /2) mod 2
 
 if _dr
 draw_sprite_ext(sprite_index, image_index, x, y, 
-side_dir *image_xscale, image_yscale, 0, -1, 1)
+side_dir *image_xscale, image_yscale, draw_dir, -1, 1)
 
 if !keyboard_check(vk_shift) exit
 

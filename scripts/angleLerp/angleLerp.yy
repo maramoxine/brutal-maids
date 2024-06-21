@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"angleLerp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"angleLerp",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

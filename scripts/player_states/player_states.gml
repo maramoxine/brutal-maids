@@ -16,7 +16,6 @@ function playerStateFree(){
 				coyote = 0
 				yvel = 1.
 				yvel_fract = 0.0
-				if hold_id move_y(1, hold_id, 1)
 		}
 		
 		if (!ground_was){
@@ -124,97 +123,13 @@ function playerStateFree(){
 	#endregion
 
 	#region attacks --------------
-	var sd= side_dir
-	//if (xaxis != 0 && xaxis != side_dir) sd = xaxis
-	atk_dir = (kdown && !grounded)? 270 : (kup? 90: (sd? 0 : 180));
-	
-	var gx = lengthdir_x(24, atk_dir)
-	var gy = lengthdir_y(24, atk_dir)
+	pl_shoot();
 
-	if (atk_buffer) atk_buffer --;
-	atk_fx = lerp(atk_fx, 0, 0.4)
-	
-	if (kattackdw && !atk_buffer)
-	{
-		var bul = instance_create_depth(x ,y , -1, oBullet)
-		move_x(gx, 1, bul)
-		move_y(gy, bul)
-		bul.move_dir =atk_dir +random_range(-3, 3)
-		//part_particles_create(global.fx, bul.x, bul.y, global.fxRocketSmoke, 1)
-		
-		atk_fx = 1
-		atk_buffer = atk_buffer_max
-		audio_play_sfx(aSfxGunFunny, -1, 0.2)
-		switch(round(atk_dir /90))
-		{
-			default:
-			
-			break;
-			case 1: 
-			break;
-			case 3:
-				yvel = yvel+1? 0 : yvel;
-				yvel_fract = yvel+1? 0 : yvel_fract;
-			break;
-		}
+	if (kgrab || attack_inp_delay){
+		state_current = playerStateWeakJab
+		attack_inp_delay = 0
+		exit;
 	}
-	
-	//hold_xpos = sd *8
-	//hold_ypos =  yaxis *8 -4;
-
-	//if (kattack || attack_inp_delay){
-
-	//	state_current = playerStateWeakJab
-	//	attack_inp_delay = 0
-	//	exit;
-	//}
-
-	//if (kgrab){
-	//	if hold_id {
-	//		if !kdown{
-	//			hold_id.xvel = sd *2.3 +(xvel *0.3)
-	//			hold_id.yvel = -1 +(yvel *0.5)
-	//			if (kup){
-	//				hold_id.xvel = xvel
-	//				hold_id.yvel = -4
-	//				}
-	//			audio_play_sfx(aSfxLongJump, 0, 0.2)
-	//			}
-	//		else{
-	//			hold_id.xvel = 0
-	//			hold_id.yvel = 0
-	//			if (!grounded){
-				
-	//				hold_id.xvel = 0
-	//				hold_id.yvel = 4	
-	//				audio_play_sfx(aSfxLongJump, 0, 0.2)
-	//				anim = 2; ind_r
-	//				jump_hold = -1
-	//				yvel = -5.4
-	//				yvel_fract = 0
-	//				xvel = 0
-	//			}
-			
-	//		}
-	//		move_x((x +hold_xpos) -hold_id.x, 1, hold_id)
-	//		move_y((y +hold_ypos) -hold_id.y, hold_id)
-		
-	//		hold_id = noone
-	//	}
-	//	else{
-
-	//		var e = instance_place(x, y, oEnemy)
-	//		if e && e.can_grab 
-	//		//&& (object_get_parent(e.object_index)== oProp)
-	//		{
-	//			hold_id = e
-	//			hold_id.grabber_id = id
-	//			hold_id.state_current = enemyState.grabbed
-	//			hold_id.state_prev = -1
-	//			audio_play_sfx(aSfxGrabMisc, 0.5)
-	//		}
-	//	}
-	//}
 	#endregion
 	
 	sprite_index = player_sprites()
@@ -234,9 +149,25 @@ function playerStateWeakJab(){
 		hit_reg = 0
 		side_dir = abs(xaxis) ? xaxis : side_dir
 	}
+	var _xaxis = (crouched)? 0 : xaxis
 
-	var move_fri_final = grounded? move_fri : move_fri_air;
-	xvel = approach(xvel, 0, move_fri_final);
+	var sl = on_slope()
+	var ts = move_spd;
+
+	if sl && !(sl.object_index == oSlopeWall
+	|| side_dir==sign(sl.image_xscale))
+		ts = lengthdir_x(move_spd, 52 /abs(sl.image_xscale))
+	if abs(_xaxis)
+	{
+		var _l = !(sign(xvel)==xaxis && abs(xvel)>move_spd && !grounded) 
+		var move_acc_final = grounded? move_acc : move_acc_air
+		if _l xvel = approach(xvel, ts* xaxis, move_acc_final)
+	}
+	else{
+		var move_fri_final = grounded? move_fri : move_fri_air
+		xvel = approach(xvel, 0, move_fri_final)
+	}
+	
 	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
 	var xo = x+ side_dir *8;
 
@@ -245,14 +176,14 @@ function playerStateWeakJab(){
 	if (state_timer >= 8)
 		{
 			
-		var hits = collision_rectangle_list(xo, bbox_top +3, 16* side_dir +xo, bbox_bottom -3, oEnemy, 0, 1, hitnow, 0);
+		var hits = collision_rectangle_list(xo, bbox_top, 20* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
 		var i = 0;
 		repeat(hits){
 			var h_ = ds_list_find_value(hitnow, i);
 			if (ds_list_find_index(hit_by_atk,h_)==-1){
 				
 				ds_list_add(hit_by_atk, h_);
-				ent_enemyDamage(h_, h_.grounded? 2 : 3.2, -1.2, 1, stuns, hitts)
+				ent_enemyDamage(h_, h_.grounded? 2.7 : 4, -3, stunw, hittw)
 				audio_stop_sound(aSfxWeakHit1) 
 				audio_play_sound(aSfxWeakHit1, 0, 0)
 					
@@ -267,7 +198,7 @@ function playerStateWeakJab(){
 		}
 	
 	}
-	if (kattack)
+	if (kgrab)
 		attack_inp_delay = true
 	
 	// Change State -----------------------------
@@ -316,5 +247,24 @@ function playerStateBounce(){
 		sprite_index = sPlayerJumpAn;
 		ind_r 
 		exit;
+	}
+}
+
+function playerStateHurt(){
+	if state_is_new{
+		state_is_new = !state_is_new
+		sprite_index = sPlayerHurt
+		audio_play_sfx(aSfxPlayerHurt, aSfxPlayerHurt, 0.1)
+		ground_was = 1
+	}
+	
+	var move_fri_final = grounded? move_fri : 0;
+	xvel = approach(xvel, 0, move_fri_final);
+	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
+	
+	if (state_timer >= 60 && grounded)
+	{
+		state_current	= playerStateFree
+		invin_frames	= 60
 	}
 }
