@@ -4,11 +4,11 @@ xaxis	      = 0
 yaxis	      = 0
 platformer_init()
 
-move_spd = 1.8
+move_spd = 2
 move_acc = 0.3
 move_fri = 0.6
 move_acc_air = 0.15
-move_fri_air = 0.03
+move_fri_air = 0.032
 
 jump_spd = -4.25
 jump_bounce = -3.5
@@ -31,7 +31,7 @@ frame_current = -1
 attack_inp_delay = false
 
 atk_buffer = 0
-atk_buffer_max = 11.5
+atk_buffer_max = 13.2
 atk_dir = 0
 ammo = 120
 ammo_max = ammo

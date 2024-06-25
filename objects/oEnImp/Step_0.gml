@@ -1,11 +1,24 @@
 /// @description 
 
 grounded = on_ground()
+
+if !instance_exists(oPlayer) state_current = enemyState.idle
+if (!hp) state_current = enemyState.dead
 ent_state_machine()
 
-if !instance_exists(oPlayer) state_current = 3;
-
-if (!hp) state_current = enemyState.dead
+var hit_pl = function(){
+	var _pl = instance_place(x, y, oPlayer)
+	if (_pl && _pl.can_hurt){
+	
+		_pl.state_prev = -1
+		_pl.state_current = playerStateHurt;
+	
+		if _pl.grounded{
+			_pl.xvel = sign(round(xvel /3)) *2
+			_pl.yvel = -2
+		}
+	}	
+}
 
 switch(state_current){
 	case enemyState.free: // =====================================================
@@ -17,16 +30,16 @@ switch(state_current){
 		if grounded{
 			if attack_is{
 				attack_is = false
-				xvel = clamp(xvel, -1.8, 1.8)
+				xvel = clamp(xvel, -move_spd, move_spd)
 				//xvel_fract = 0.;
-				land_delay = 30
+				land_delay = 10
 			}
 		}
 		
 		var _a	= (oPlayer.x -x)
 		var _ax	= (abs(_a)>8 ? sign(_a) : 0)
 		if (land_delay || (attack_is && state_timer <40)) _ax = 0
-		var _move_spd = 1.8
+		var _move_spd = move_spd
 		
 		if (oPlayer.y >y) && !land_delay
 		&& (abs(_a) <48)
@@ -47,25 +60,21 @@ switch(state_current){
 			xvel = approach(xvel, 0, move_fri_final)
 		}
 		
-		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
+		yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav)
 		
 		#region
-		var _pl = instance_place(x, y, oPlayer)
-		if (_pl && _pl.can_hurt){
-	
-			_pl.state_prev = -1
-			_pl.state_current = playerStateHurt;
-	
-			if _pl.grounded{
-				_pl.xvel = sign(round(xvel /3)) *2
-				_pl.yvel = -2
-			}
-		}
+		
+		hit_pl()
 		
 		if attack_timer
 			attack_timer--;
 		else if grounded
-			state_current = -2
+			state_current = -1
+		
+		if (oPlayer.y <= y -32)&& (attack_timer >18) && !attack_is && !land_delay{
+			//attack_short = true
+			attack_timer = 18
+		}
 		
 		#endregion
 		#region sprites	
@@ -102,11 +111,11 @@ switch(state_current){
 		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
 		
 	break;
-	case -2://anticipation  //=====================================================
+	case -1://anticipation  //=====================================================
 		if state_is_new{
 			sprite_index = sEnImpJumpAntic
 			state_is_new = !state_is_new
-			image_speed = 1 /4
+			image_speed = 1 /2
 			ind_r;
 			xvel = 0.
 			yvel = 0.
@@ -115,19 +124,25 @@ switch(state_current){
 		
 		var move_fri_final = grounded? move_fri : move_fri_air
 		xvel = approach(xvel, 0, move_fri_final)
-		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
+		yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav)
+		
+		if animation_end()
+		{
+			image_speed = 0.
+			image_index = image_number -1
+		}
 		
 		if (state_timer >= 20){
 			var py_ = min(oPlayer.y, y-1)
-			jump_dir = point_direction(x, y, oPlayer.x, py_)
-			jump_dir = clamp(jump_dir, 45, 135)
+			jump_dir = point_direction(x, bbox_bottom, oPlayer.x, py_)
+			jump_dir = clamp(jump_dir, 35, 145)
 			xvel		= lengthdir_x(5, jump_dir)
-			yvel		= lengthdir_y(5, jump_dir) -1
+			yvel		= lengthdir_y(4, jump_dir) -1.5
 			xvel_fract	= 0.0
 			yvel_fract	= 0.0
 			
 			state_current = enemyState.free
-			attack_timer = 60 *irandom_range(1, 4)
+			attack_timer = 30 *irandom_range(4, 8)
 			attack_is = true
 			vox = audio_play_sfx(aVoxImpAttack, vox, 0.05)
 		}
@@ -147,14 +162,19 @@ switch(state_current){
 		if state_is_new{
 			ind_r;
 			sprite_index = sEnImpDead
-			image_speed = 1 /3
+			image_speed = 1 /4
 			vox = audio_play_sfx(choose(aVoxImpDead1, aVoxImpDead2), vox, 0.1)
 			state_is_new = !state_is_new
 		}
 		
+		if animation_end()
+		{
+			image_speed = 0.
+			image_index = image_number -1
+		}
 		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
 		
-		if (animation_end()) die
+		if state_timer = 12 die
 	break;
 } 
 

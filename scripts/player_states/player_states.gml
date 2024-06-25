@@ -148,6 +148,8 @@ function playerStateWeakJab(){
 		ground_was = true
 		hit_reg = 0
 		side_dir = abs(xaxis) ? xaxis : side_dir
+		
+		audio_play_sfx(aSfxPlayerSlash1);
 	}
 	var _xaxis = (crouched)? 0 : xaxis
 
@@ -171,25 +173,23 @@ function playerStateWeakJab(){
 	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
 	var xo = x+ side_dir *8;
 
-	if state_timer = 4 audio_play_sfx(aSfxPlayerSlash1);
-
-	if (state_timer >= 8)
+	if (state_timer >= 0)
 		{
 			
-		var hits = collision_rectangle_list(xo, bbox_top, 20* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
+		var hits = collision_rectangle_list(xo, bbox_top, 16* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
 		var i = 0;
 		repeat(hits){
 			var h_ = ds_list_find_value(hitnow, i);
 			if (ds_list_find_index(hit_by_atk,h_)==-1){
 				
 				ds_list_add(hit_by_atk, h_);
-				ent_enemyDamage(h_, h_.grounded? 2.7 : 4, -3, stunw, hittw)
+				ent_enemyDamage(h_, h_.grounded? 2.3 : 4, -1 +yvel, stunw, hittw)
 				audio_stop_sound(aSfxWeakHit1) 
 				audio_play_sound(aSfxWeakHit1, 0, 0)
 					
 				if !hit_reg{
 					yvel = grounded ? yvel : -1
-					xvel *= 0.5
+					xvel = 0;
 					audio_stop_sound(aSfxPlayerSlash1)
 					hit_reg = 1
 				}

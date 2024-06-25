@@ -49,4 +49,4 @@ var px = -lengthdir_x(12, move_dir)
 var py = -lengthdir_y(12, move_dir)
 part_particles_create(global.fx2, x +px +xvel, y +py +yvel, global.fxRocketSmoke, 1)
 
-ent_postState(0)
+ent_postState(0, 0, 0, 0)

@@ -118,8 +118,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"ui_gui",
+    "path":"folders/Sprites/ui_gui.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

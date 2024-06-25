@@ -9,6 +9,7 @@ if (!active)
 	yvel_fract = 0.0
 }
 
+mask_index = sEntitySmall
 var en_ = instance_place(x +xvel, y +yvel, oEnemy)
 if (en_){
 	var x_ = en_.xvel
@@ -23,6 +24,7 @@ if (en_){
 	audio_play_sound(aSfxWeakBullet1, 0, 0)
 	die
 }
+mask_index = sEntityBullet
 
 timer --;
 if !timer
@@ -56,4 +58,4 @@ var dest = function(){
 	}
 }
 
-ent_postState(false,0, 0, dest)
+ent_postState(0, 0, dest)

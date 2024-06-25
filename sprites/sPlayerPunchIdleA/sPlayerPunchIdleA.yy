@@ -12,9 +12,9 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"915558b8-6fa4-4ebb-b609-4e5fb0aeac88","name":"915558b8-6fa4-4ebb-b609-4e5fb0aeac88","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"6854a246-1b7c-4c78-9703-aad7c5ab590b","name":"6854a246-1b7c-4c78-9703-aad7c5ab590b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"354419c0-f51e-4854-95d9-4226cbc7afc2","name":"354419c0-f51e-4854-95d9-4226cbc7afc2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"507957ee-1b33-45a6-99ce-d38e50db2d3e","name":"507957ee-1b33-45a6-99ce-d38e50db2d3e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"a0562a03-7795-4044-bf8a-cff69eda7df0","name":"a0562a03-7795-4044-bf8a-cff69eda7df0","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
@@ -72,14 +72,14 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"915558b8-6fa4-4ebb-b609-4e5fb0aeac88","path":"sprites/sPlayerPunchIdleA/sPlayerPunchIdleA.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a2290c7f-948e-41bb-92d9-3681fb3bc7f0","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6854a246-1b7c-4c78-9703-aad7c5ab590b","path":"sprites/sPlayerPunchIdleA/sPlayerPunchIdleA.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"eff6b6f2-d607-4833-b3a4-f943a5557c08","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"eff6b6f2-d607-4833-b3a4-f943a5557c08","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"354419c0-f51e-4854-95d9-4226cbc7afc2","path":"sprites/sPlayerPunchIdleA/sPlayerPunchIdleA.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"2744716b-cbad-4f01-9a43-24d39f7480c5","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"2744716b-cbad-4f01-9a43-24d39f7480c5","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"507957ee-1b33-45a6-99ce-d38e50db2d3e","path":"sprites/sPlayerPunchIdleA/sPlayerPunchIdleA.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ec995b18-de22-4358-9706-c15852203996","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a0562a03-7795-4044-bf8a-cff69eda7df0","path":"sprites/sPlayerPunchIdleA/sPlayerPunchIdleA.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"90f10baa-64ab-4beb-9373-b0418bf48144","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},

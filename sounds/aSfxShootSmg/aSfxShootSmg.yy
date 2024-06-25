@@ -12,8 +12,8 @@
   "duration":0.183401,
   "name":"aSfxShootSmg",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Player",
+    "path":"folders/Sounds/Player.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

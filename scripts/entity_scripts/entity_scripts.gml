@@ -70,22 +70,21 @@ function position_to_object(){
 }
 /// ----------------------
 function ent_postState(){
-	/// @arg [bounce]
-	/// @arg [col_ignore]
-	/// @arg [hit_stop_do]
-	/// @arg [collision_function]
-	/// @arg [after_or_before]
+	/// @func ent_postState([bounce, col_ignore, col_function, platforms])
 
 	var _bounce = true
 	var _col_ignore = false
+	
 	var _hit_d = true
+	if (object_get_parent(object_index) != oEnemy
+	&& object_get_parent(object_index) != oProp) _hit_d = false
+	
 	var _funct = 0
-	var _ord = 1
+	var _do_pl = true
 
 	switch(argument_count){
-		case 5: _ord = argument[4]
-		case 4: _funct = argument[3]
-		case 3: _hit_d = argument[2]
+		case 4: _do_pl = argument[3]
+		case 3: _funct = argument[2]
 		case 2: _col_ignore = argument[1]
 		case 1: _bounce = argument[0]
 		break;
@@ -134,17 +133,19 @@ function ent_postState(){
 
 	if !move_x(_xf, true, self, _col_ignore)
 	{	
-		if (_funct != 0) && _ord method_call(_funct,[1])
-		xvel		= 0
-		xvel_fract	= 0
-		if (_funct != 0) && !_ord method_call(_funct,[1])
+		if (_funct = 0){
+			xvel		= 0
+			xvel_fract	= 0
+		}
+		else method_call(_funct,[1])
 	}
-	if !move_y(_yf, self, _col_ignore)
+	if !move_y(_yf, self, _col_ignore, _do_pl)
 	{
-		if (_funct != 0) && _ord method_call(_funct,[0])
-		yvel		= 0
-		yvel_fract	= 0
-		if (_funct != 0) && !_ord method_call(_funct,[0])
+		if (_funct = 0){
+			yvel		= 0
+			yvel_fract	= 0
+		}
+		else method_call(_funct,[0])
 	}
 
 	#endregion

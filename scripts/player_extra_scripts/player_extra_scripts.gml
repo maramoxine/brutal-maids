@@ -91,9 +91,6 @@ function player_sprites(){
 					image_speed = 1 /4
 					return sPlayerAir
 				break;
-				case 3:
-					image_speed = 1 /2
-					return sPlayerWallJumpAn
 				break;
 				case 2:
 					image_speed = 1 /2
@@ -134,18 +131,6 @@ function player_sprites(){
 				case 1:
 					image_speed = 1 /4
 					return sPlayerLandIdle
-				break;
-				case 4:
-					image_speed = 1 /2
-					return sPlayerLandWalk
-				break;
-				case 7:
-					image_speed = 1 /4
-					return sPlayerTurnWalk
-				break;
-				case 8:
-					image_speed = 1 /4
-					return sPlayerWalkStart
 				break;
 			}
 		}

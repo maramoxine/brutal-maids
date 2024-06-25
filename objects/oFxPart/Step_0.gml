@@ -20,5 +20,5 @@ var bounce = function(){
 	}
 }
 
-ent_postState(0, false, 0, bounce, 0)
+ent_postState(0, 0, bounce)
 depth = bbox_depth;

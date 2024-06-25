@@ -10,8 +10,8 @@
   "name":"oFxPart",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"ENTITIES",
+    "path":"folders/Objects/ENTITIES.yy",
   },
   "parentObjectId":{
     "name":"oEntity",

@@ -1,32 +1,28 @@
 /// @description 
 
 platformer_init();
-xvel_stop = 0.
-yvel_stop = 0.
 
 hp = 4
-hp_max = hp
+hp_max = 0
 
+side_dir	= 1
 move_fri	= 0.15
 move_fri_air= 0
 grav		= 0.15
 if object_index = oProp grav = 0.12
 vsp_max		= 7
 
-side_dir	= 1
 hit_stop	= 0
 hit_timer	= 60
 hit_inst = 1
-damage_hit = function(){
-	
-	//state_current = 2
-	//state_prev	= -1
-}
+xvel_stop = 0.
+yvel_stop = 0.
 
+damage_hit = function(){}
 can_bounce	= false
-can_push	= true
 can_hit		= true
 
+init_do = false
 state_is_new = true
 state_current = enemyState.free
 state_prev	= 10

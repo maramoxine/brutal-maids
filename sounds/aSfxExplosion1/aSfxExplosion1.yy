@@ -12,8 +12,8 @@
   "duration":1.335167,
   "name":"aSfxExplosion1",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"General",
+    "path":"folders/Sounds/General.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
