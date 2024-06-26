@@ -19,26 +19,19 @@ function playerStateFree(){
 		}
 		
 		if (!ground_was){
-			anim = abs(xaxis)&&!crouched ? (abs(xvel /2) ? 1: 1) : 1
 			audio_play_sound(aSfxLand, 0, 0)
+			anim = 1
 			ind_r
 		}
 	}
 
-	//if ((!kdown || !grounded) && crouched){ // leave the crouch
-	//	crouched = 0; 
-	//	mask_index = sEntityMask
-	//}
-
 	ground_was = grounded
 
 	// cheating the jump input
-	kjump = (crouched) ? 0 : kjump
-	kjumpdw = (crouched) ? 0 : kjumpdw
 
 	#region Calculate xspeeds ------------------------
 
-	var _xaxis = (crouched)? 0 : xaxis
+	var _xaxis = xaxis
 
 	var sl = on_slope()
 	var ts = move_spd;
@@ -151,7 +144,7 @@ function playerStateWeakJab(){
 		
 		audio_play_sfx(aSfxPlayerSlash1);
 	}
-	var _xaxis = (crouched)? 0 : xaxis
+	var _xaxis = xaxis
 
 	var sl = on_slope()
 	var ts = move_spd;
@@ -240,8 +233,6 @@ function playerStateBounce(){
 				break;
 			}
 		}
-		bounce_t = 10
-	
 	
 		anim = 2;
 		sprite_index = sPlayerJumpAn;
@@ -256,15 +247,17 @@ function playerStateHurt(){
 		sprite_index = sPlayerHurt
 		audio_play_sfx(aSfxPlayerHurt, aSfxPlayerHurt, 0.1)
 		ground_was = 1
+		
+		hp --;
+		if (!hp) die;
 	}
+
+	xvel = 0;
+	yvel = 0;
 	
-	var move_fri_final = grounded? move_fri : 0;
-	xvel = approach(xvel, 0, move_fri_final);
-	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
-	
-	if (state_timer >= 60 && grounded)
+	if (state_timer >= 20)
 	{
 		state_current	= playerStateFree
-		invin_frames	= 60
+		invin_frames	= 40
 	}
 }

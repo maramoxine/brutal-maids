@@ -4,14 +4,21 @@ var vx = camera_get_view_x(view_camera[0])
 ,	vy = camera_get_view_y(view_camera[0])
 ,	vh = camera_get_view_height(view_camera[0])
 
-var bfx = atk_fx *3
+var wp = sWpPistol
+var bfx = atk_fx *2.5
+var wp_x = sprite_get_xoffset(wp)
+,	wp_y = sprite_get_yoffset(wp)
+,	wp_h = sprite_get_height(wp)
 
 if !keyboard_check(vk_shift){
-	draw_sprite(sUiAmmo,0,vx +8 +bfx, vy +8 +bfx)
+	draw_sprite_ext(sWpPistol, 0, vx +8 +wp_x, vy +16 +wp_y,
+	1, 1, 0, -1, 1)
 	draw_set_font(global.fontAmmo)
-	draw_text( vx +16 +bfx, vy +8 +bfx, $"{ammo}")
+	draw_text( vx +8, vy +8, $"hp < {hp} >")
+	draw_text( vx +24, vy +16 +bfx, $" {ammo}")
+	draw_text( vx +24, vy +16, $"\n/{ammo_max}")
 	draw_set_font(global.font1)
-	exit
+	exit;
 }
 
 #region shit

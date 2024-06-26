@@ -1,7 +1,7 @@
 /// ----------------------
 function game_init(){
 
-global.gameWidth = 512
+global.gameWidth = 400
 global.gameHeight = 320
 global.resolution = 1
 global.zoom = 2

@@ -11,7 +11,7 @@ function player_postState(){
 	if (state_current = playerStateHurt) can_hurt = 0
 	
 	// loop through screen
-	entity_loop()
+	entity_loop();
 	
 	// balloon bounce
 	var _en = instance_place(x, y +yvel, oBalloon)
@@ -51,24 +51,23 @@ function player_postState(){
 			}
 		}
 	}
-	bounce_t = (bounce_t>=0)? bounce_t-1 : -1
-	
 }
 
 /// ----------------------
 function player_sprites(){
 
-	var _xaxis = (crouched)? 0 : xaxis
+	var _xaxis = xaxis
 	var walk = abs(xvel /2)
 
 	if sprite_current != sprite_index{
 		image_index = 0
 		sprite_current = sprite_index
 	}
+	
 	var _frm = floor(image_index)
-	frame_current = (sprite_index!=sPlayerWalk)? -1 : frame_current
+	frame_current = (sprite_index != sPlayerWalk)? -1 : frame_current
 
-	if animation_end(){
+	if (animation_end())
 		switch(anim){
 			case 0:
 			case 3:
@@ -81,58 +80,55 @@ function player_sprites(){
 			case 10:
 				anim = 11
 			break;
+		}	
+
+	if (!grounded){
+		switch(anim){
+			case 0:
+				image_speed = 1 /4
+				return sPlayerAir
+			break;
+			break;
+			case 2:
+				image_speed = 1 /2
+				return sPlayerJumpAn
+			break;
+			case 6:
+				image_speed = 1 /2
+				return sPlayerAirBumpAn
+			break
 		}
 	}
-
-	if (!crouched){
-		if (!grounded){
-			switch(anim){
-				case 0:
-					image_speed = 1 /4
-					return sPlayerAir
-				break;
-				break;
-				case 2:
-					image_speed = 1 /2
-					return sPlayerJumpAn
-				break;
-				case 6:
-					image_speed = 1 /2
-					return sPlayerAirBumpAn
-				break
-			}
-		}
-		else{
-			switch(anim){
-				case 0:
-					if !(walk || abs(_xaxis)){
-						if (kup){
-							image_speed = 1 /4
-							return sPlayerIdleUp
-						}
-						else{
-							image_speed = 1 /4
-							return sPlayerIdle
-						}
+	else{
+		switch(anim){
+			case 0:
+				if !(walk || abs(_xaxis)){
+					if (kup){
+						image_speed = 1 /4
+						return sPlayerIdleUp
 					}
 					else{
-						if frame_current != _frm
-							switch(_frm){
-								case 0:
-								part_particles_create(global.fx2, x, bbox_bottom -2, global.fxWalk, 1)
-								audio_play_sfx(aSfxPlayerStep, -1, 0.3)
-								break;
-						}
-						frame_current = _frm
-						image_speed = 1/2 
-						return sPlayerWalk
+						image_speed = 1 /4
+						return sPlayerIdle
 					}
-				break;
-				case 1:
-					image_speed = 1 /4
-					return sPlayerLandIdle
-				break;
-			}
+				}
+				else{
+					if (frame_current != _frm)
+						switch(_frm){
+							case 0:
+							part_particles_create(global.fx2, x, bbox_bottom -2, global.fxWalk, 1)
+							audio_play_sfx(aSfxPlayerStep, -1, 0.3)
+							break;
+					}
+					frame_current = _frm
+					image_speed = 1/2 
+					return sPlayerWalk
+				}
+			break;
+			case 1:
+				image_speed = 1 /4
+				return sPlayerLandIdle
+			break;
 		}
 	}
 	

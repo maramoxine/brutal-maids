@@ -32,6 +32,7 @@
     {"name":"todo","order":12,"path":"notes/todo/todo.yy",},
     {"name":"oBackgronud","order":1,"path":"objects/oBackgronud/oBackgronud.yy",},
     {"name":"oBalloon","order":10,"path":"objects/oBalloon/oBalloon.yy",},
+    {"name":"Object32","order":13,"path":"objects/Object32/Object32.yy",},
     {"name":"oBreakBridge","order":4,"path":"objects/oBreakBridge/oBreakBridge.yy",},
     {"name":"oBullet","order":2,"path":"objects/oBullet/oBullet.yy",},
     {"name":"oCamera","order":5,"path":"objects/oCamera/oCamera.yy",},
