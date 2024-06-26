@@ -46,7 +46,7 @@ switch(state_current){
 		&& (on_platform() && (!on_wall() || on_slope())){
 				move_y(1, self, 1)
 				xvel = 0.
-				yvel = 1.
+				yvel = 0.
 				yvel_fract = 0.0
 		}
 		

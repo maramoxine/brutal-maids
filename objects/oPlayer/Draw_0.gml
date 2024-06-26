@@ -24,7 +24,7 @@ x+ gun_xfx *(1 -0.7*atk_fx), y+ gun_yfx*(1 -0.7*atk_fx) +wp_walk -2,
 , -1, 1)
 
 var dr_ = 1
-if (!can_hurt && invin_frames) dr_ = (floor(invin_frames /1) mod 2);
+if (!can_hurt && invin_frames) dr_ = (floor(invin_frames /2) mod 2);
 
 if dr_
 draw_sprite_ext(sprite_index, image_index, x, y, 

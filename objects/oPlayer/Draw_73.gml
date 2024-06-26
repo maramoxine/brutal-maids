@@ -13,8 +13,15 @@ var wp_x = sprite_get_xoffset(wp)
 if !keyboard_check(vk_shift){
 	draw_sprite_ext(sWpPistol, 0, vx +8 +wp_x, vy +16 +wp_y,
 	1, 1, 0, -1, 1)
+	
+	draw_set_color($0d1363)
+	draw_rectangle(vx +40, vy +8, vx+ 80, vy +15, 0)
+	draw_set_color(c_red)
+	draw_rectangle(vx +40, vy +8, vx+ 40+ 40*(hp/hp_max), vy +15, 0)
+	draw_set_color(-1)
+	
 	draw_set_font(global.fontAmmo)
-	draw_text( vx +8, vy +8, $"hp < {hp} >")
+	draw_text( vx +8, vy +8, $"hp {hp}")
 	draw_text( vx +24, vy +16 +bfx, $" {ammo}")
 	draw_text( vx +24, vy +16, $"\n/{ammo_max}")
 	draw_set_font(global.font1)

@@ -29,7 +29,7 @@ attack_inp_delay = false
 atk_buffer		= 0
 atk_buffer_max	= 11.3
 atk_dir			= 0
-ammo			= 120
+ammo			= 95
 ammo_max		= ammo
 
 hp = 4
