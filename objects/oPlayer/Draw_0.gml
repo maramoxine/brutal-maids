@@ -18,7 +18,7 @@ gun_xfx = lerp(gun_xfx, gx, 0.5)
 gun_yfx = lerp(gun_yfx, gy, 0.5)
 
 draw_sprite_ext(sWpPistol, 0,
-x+ gun_xfx *(1 -0.7*atk_fx), y+ gun_yfx*(1 -0.7*atk_fx) +wp_walk -2, 
+x+ gun_xfx *(1 -0.7*atk_fx) -xvel *1.3, y+ gun_yfx*(1 -0.7*atk_fx) +wp_walk -2 -yvel *1.3, 
 (1 -0.3 *atk_fx) , side_dir *(1 +0.3 *atk_fx)
 , round(gun_rfx/45)*45 //+ round(side_dir*atk_fx*15)
 , -1, 1)

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"move_platform_x",
   "isCompatibility":false,
   "isDnD":false,

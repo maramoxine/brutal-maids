@@ -24,7 +24,7 @@ if current_option <0 current_option = rm_amount -1
 if (current_option != option_fx){
 	change_lerp = option_fx <current_option? 1.: -1.;
 	option_fx = current_option
-	audio_play_sfx(aSfxPlayerCrouch, -1)
+	audio_play_sfx(aSfxSelectMove, aSfxSelectMove)
 }
 
 if (keyboard_check_pressed(vk_enter)){
@@ -34,13 +34,13 @@ if (keyboard_check_pressed(vk_enter)){
 var dx = 128 +vx
 var dy = 32 +vy
 
-draw_sprite(sPlayerIdle, 0, dx -16, (change_lerp *2)+
-dy +current_option *select_separ +(3 *sin(time +current_option)))
+draw_circle(dx -16, (change_lerp *2)+
+dy +current_option *select_separ, 6, 0)
 
 var i = 0
 repeat(rm_amount){
 		draw_text_transformed(dx, 
-		dy +i*select_separ +(3 *sin(time +i)),
+		dy +i*select_separ,
 		$"{i} - {room_get_name(i +1)}",
 		1, 1, 0)
 	i++;
@@ -48,4 +48,4 @@ repeat(rm_amount){
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top)
-draw_set_font(global.font1)
+draw_set_font(font2)

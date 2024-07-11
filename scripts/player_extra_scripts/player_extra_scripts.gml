@@ -19,15 +19,15 @@ function player_postState(){
 	if _en && !grounded && _en.y+4 >bbox_bottom
 	&& state_current!=playerStateBounce{
 		move_y(_en.bbox_top -bbox_bottom, self)
-		jump_hold = -1
-		yvel = jump_spd -0.5; yvel_fract = 0
+		jump_hold = -1.;
+		yvel = jump_spd -0.5;
+		yvel_fract = 0.
 		if state_current== playerStateFree {
 			anim = 2;
 			image_index = 0 
 		}
-		audio_play_sfx(aSfxBounceBalloon, aSfxBounceBalloon, 0.1)
 		with _en{ 
-			jump_an = 1; image_index = 0
+			balloon_hit();
 		}
 	}
 	

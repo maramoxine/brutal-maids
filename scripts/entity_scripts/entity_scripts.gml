@@ -16,26 +16,18 @@ function ent_state_machine(){
 ///-----------------------------
 function ent_enemyDamage(){
 /// @arg inst
-/// @arg [xvel]
-/// @arg [yvel]
 /// @arg [hit_stop]
 /// @arg [stagger_time]
 	
 	var _inst = argument[0]
-	var _xv = 0
-	var _yv = 0
 	var _hst = stunw , _hti = hittw
 	
 	switch argument_count{
-		case 5: _hti = argument[4]
-		case 4: _hst = argument[3]
-		case 3: _yv = argument[2]
-		case 2: _xv = argument[1]
+		case 3: _hti = argument[2]
+		case 2: _hst = argument[1]
 		break;
 	}
 	
-	_inst.xvel =		_xv *side_dir
-	_inst.yvel =		_yv
 	_inst.xvel_fract =	0
 	_inst.yvel_fract =	0
 	_inst.hit_stop =	_hst
@@ -96,8 +88,8 @@ function ent_postState(){
 	if _en && (yvel >=0) && (_en.y+4 >y) && _bounce{
 		yvel = -4
 		yvel_fract = 0
-		audio_play_sfx(aSfxBounceBalloon, -1, 0.1)
-		with _en{ jump_an = 1; image_index = 0
+		with _en{ 
+			balloon_hit();
 		}
 	}
 
@@ -149,5 +141,4 @@ function ent_postState(){
 	}
 
 	#endregion
-
 }

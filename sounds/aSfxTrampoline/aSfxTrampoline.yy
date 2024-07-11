@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.219048,
+  "duration":0.0,
   "name":"aSfxTrampoline",
   "parent":{
     "name":"Sounds",

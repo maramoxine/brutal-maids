@@ -1,12 +1,22 @@
-/// @description 
+/// @pasa UNA PURA VE OSTIAA
 
 persistent = true
 
 game_init()
 global.font1 = font_add_sprite(sFont1, ord("!"),1 , -1 )
-draw_set_font(global.font1)
+draw_set_font(font2)
 global.fullscreen = 0
 global.fontAmmo = font_add_sprite(sAmmoFont, ord("!"),0 , 0)
+
+en_ls = ds_list_create()
+ds_list_add(en_ls,
+oEnImp,
+oEnPinions,
+oEnMissile,
+oEnBomb)
+
+en_select = 0
+en_max = ds_list_size(en_ls) -1
 
 application_surface_draw_enable(false)
 if (!instance_exists(oCamera))

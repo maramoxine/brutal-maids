@@ -1,7 +1,7 @@
 /// ----------------------
 function pl_shoot(){
 	if (atk_buffer) atk_buffer --;
-	if !atk_buffer 
+	if !atk_buffer && !kalt
 		atk_dir = (kdown && !grounded)? 270 : (kup? 90: (side_dir? 0 : 180));
 	
 	var gx = lengthdir_x(24, atk_dir)

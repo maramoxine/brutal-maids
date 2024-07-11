@@ -1,5 +1,5 @@
 {
-  "$GMRoom":"",
+  "$GMRoom":"v1",
   "%Name":"RoomSelection",
   "creationCodeFile":"rooms/RoomSelection/RoomCreationCode.gml",
   "inheritCode":false,
@@ -10,8 +10,8 @@
   "layers":[],
   "name":"RoomSelection",
   "parent":{
-    "name":"joguinho",
-    "path":"joguinho.yyp",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

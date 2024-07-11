@@ -51,8 +51,8 @@ switch(state_current){
 		if (_xv == side_dir) || en_
 			{
 			if en_{		
-				ent_enemyDamage(en_, 1.5, -1.2, stuns, hitts)
-				//audio_play_sound(aSfxWeakHit1, 0, 0)
+				ent_enemyDamage(en_, stuns, hitts)
+				audio_play_sound(aSfxWeakHit1, 0, 0)
 				}
 				
 			audio_play_sfx(aSfxTrashCanHit)

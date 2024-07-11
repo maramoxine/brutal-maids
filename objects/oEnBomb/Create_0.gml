@@ -2,4 +2,7 @@
 
 event_inherited();
 
-image_speed = 1 /2
+hp			= 3;
+timer		= 60 *3;
+beep		= 0
+beep_timer	= timer

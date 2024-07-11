@@ -12,7 +12,7 @@ switch(state_current){
 		
 		var move_fri_final = grounded? move_fri : move_fri_air
 		xvel = approach(xvel, 0, move_fri_final)
-		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
+		yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav)
 		
 		if state_timer>=60 state_current = 1
 	break;

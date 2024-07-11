@@ -21,7 +21,7 @@ function playerStateFree(){
 		if (!ground_was){
 			audio_play_sound(aSfxLand, 0, 0)
 			anim = 1
-			ind_r
+			image_index = 0;
 		}
 	}
 
@@ -62,7 +62,7 @@ function playerStateFree(){
 	if (_fl)
 		if (be_on_top(_fl)){
 			anim = 6
-			ind_r;
+			image_index = 0;;
 			yvel = 1.2
 			yvel_fract = 0
 			audio_play_sfx(aSfxBumpHead, aSfxBumpHead)
@@ -77,7 +77,7 @@ function playerStateFree(){
 			coyote = 0
 			audio_play_sound(aSfxJump, 0, 0)
 			anim = 2//abs(xaxis)? (abs(xvel /2) ? 10: 2) : 2
-			ind_r;
+			image_index = 0;;
 			grounded = false
 		}
 		coyote --;
@@ -134,7 +134,7 @@ function playerStateWeakJab(){
 
 	if state_is_new{
 		state_is_new = !state_is_new;
-		sprite_index = sPlayerPunchIdleA ind_r
+		sprite_index = sPlayerPunchIdleA image_index = 0;
 		image_speed = 1 /2
 		ds_list_clear(hit_by_atk);
 		ds_list_clear(hitnow);
@@ -165,18 +165,25 @@ function playerStateWeakJab(){
 	
 	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
 	var xo = x+ side_dir *8;
-
+	
 	if (state_timer >= 0)
 		{
-			
+		
 		var hits = collision_rectangle_list(xo, bbox_top, 16* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
-		var i = 0;
-		repeat(hits){
-			var h_ = ds_list_find_value(hitnow, i);
-			if (ds_list_find_index(hit_by_atk,h_)==-1){
+		for (var i = 0; i <(ds_list_size(hitnow)); i++){
+			var h_ = hitnow[| i];
+			if (ds_list_find_index(hit_by_atk, h_) == -1){
 				
-				ds_list_add(hit_by_atk, h_);
-				ent_enemyDamage(h_, h_.grounded? 2.3 : 4, -1 +yvel, stunw, hittw)
+				if (false == h_.can_hurt)
+					continue;
+				ds_list_add(hit_by_atk, hitnow[| i]);
+				
+				var dirv_ = point_direction(x, y, x +side_dir *abs(xvel) +side_dir, y +yvel)
+				,	hispd_ = (h_.grounded) ? 3 : 4.2;
+				h_.xvel = lengthdir_x(hispd_, dirv_)
+				h_.yvel = lengthdir_y(hispd_ +.5, dirv_);
+				
+				ent_enemyDamage(h_, stunw, hittw)
 				audio_stop_sound(aSfxWeakHit1) 
 				audio_play_sound(aSfxWeakHit1, 0, 0)
 					
@@ -187,10 +194,9 @@ function playerStateWeakJab(){
 					hit_reg = 1
 				}
 			}	
-			i++;
 		}
-	
 	}
+	
 	if (kgrab)
 		attack_inp_delay = true
 	
@@ -208,7 +214,7 @@ function playerStateBounce(){
 	if state_is_new{
 		state_is_new = !state_is_new
 		sprite_index = sPlayerLandIdle
-		ind_r
+		image_index = 0;
 		image_speed = 1/6
 		audio_play_sfx(aSfxBounceEnemy, aSfxBounceEnemy, 0)
 		jump_hold = -1
@@ -236,7 +242,7 @@ function playerStateBounce(){
 	
 		anim = 2;
 		sprite_index = sPlayerJumpAn;
-		ind_r 
+		image_index = 0; 
 		exit;
 	}
 }
@@ -244,7 +250,7 @@ function playerStateBounce(){
 function playerStateHurt(){
 	if state_is_new{
 		state_is_new = !state_is_new
-		sprite_index = sPlayerHurt
+		//sprite_index = sPlayerHurt
 		audio_play_sfx(aSfxPlayerHurt, aSfxPlayerHurt, 0.1)
 		ground_was = 1
 		
@@ -252,12 +258,11 @@ function playerStateHurt(){
 		if (!hp) die;
 	}
 
-	xvel = 0;
-	yvel = 0;
+	//xvel = 0;
+	//yvel = 0;
 	
-	if (state_timer >= 20)
-	{
-		state_current	= playerStateFree
-		invin_frames	= 40
-	}
+
+	state_current	= playerStateFree
+	invin_frames	= 40
+	
 }

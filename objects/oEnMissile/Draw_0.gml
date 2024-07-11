@@ -5,8 +5,9 @@ if hit_stop shader_set(vHitFlash)
 var xsc_ = 1
 //if move_dir>90 && move_dir <270 xsc_ = -3
 
+var mvd_	= round(move_dir /22.5) *22.5
 draw_sprite_ext(sprite_index, image_index, x, y
-, 1, xsc_, round(move_dir), -1, 1)
+, 1, xsc_, mvd_, -1, 1)
 
 shader_reset();
 

@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"aSfxGrabMisc",
+  "%Name":"aSfxBombTIck",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.2088,
-  "name":"aSfxGrabMisc",
+  "duration":0.127166,
+  "name":"aSfxBombTIck",
   "parent":{
-    "name":"Player",
-    "path":"folders/Sounds/Player.yy",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"aSfxGrabMisc.mp3",
+  "soundFile":"aSfxBombTIck.wav",
   "type":0,
   "volume":1.0,
 }

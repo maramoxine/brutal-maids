@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"coll_y",
   "isCompatibility":false,
   "isDnD":false,

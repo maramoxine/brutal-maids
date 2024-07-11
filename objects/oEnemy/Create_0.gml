@@ -20,9 +20,9 @@ yvel_stop = 0.
 
 damage_hit = function(){}
 can_bounce	= false
-can_hit		= true
+can_hurt	= true
 
-init_do = false
+init_do		= false
 state_is_new = true
 state_current = enemyState.free
 state_prev	= 10

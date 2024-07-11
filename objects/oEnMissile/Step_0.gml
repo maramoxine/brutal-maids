@@ -22,7 +22,7 @@ switch(state_current){
 		audio_sound_pitch(vox, 0.5 +(sfxvel *2))
 
 		var _mdir = point_direction(x, y, oPlayer.x ,oPlayer.y);
-		move_dir = angle_lerp(move_dir, _mdir, 0.3, 360)
+		move_dir = angle_lerp(move_dir, _mdir, 1, 8)
 
 		var max_x = lengthdir_x(4, move_dir)
 		var max_y = lengthdir_y(4, move_dir)
@@ -66,8 +66,9 @@ switch(state_current){
 
 if (!hp) die;
 
-var px = -lengthdir_x(12, move_dir)
-var py = -lengthdir_y(12, move_dir)
+var mvd_	= round(move_dir /22.5) *22.5
+var px = -lengthdir_x(12, mvd_)
+var py = -lengthdir_y(12, mvd_)
 if (state_current != enemyState.idle)
 	part_particles_create(global.fx2, x +px +xvel, y +py +yvel, global.fxRocketSmoke, 1)
 

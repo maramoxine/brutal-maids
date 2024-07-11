@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"wall_above",
   "isCompatibility":false,
   "isDnD":false,

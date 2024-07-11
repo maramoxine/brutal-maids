@@ -1,12 +1,12 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"game_init",
   "isCompatibility":false,
   "isDnD":false,
   "name":"game_init",
   "parent":{
-    "name":"joguinho",
-    "path":"joguinho.yyp",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

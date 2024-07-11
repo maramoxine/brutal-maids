@@ -10,20 +10,26 @@ if (!active)
 }
 
 mask_index = sEntitySmall
-var en_ = instance_place(x +xvel, y +yvel, oEnemy)
-if (en_){
-	var x_ = en_.xvel
-	var y_ = en_.yvel
-	en_.hp -= 1
-	ent_enemyDamage(en_,
-	x_ , en_.grounded? 0 : y_ 
-	, 5, 4)
-	
-	audio_stop_sound(aSfxWeakBullet1) 
-	audio_stop_sound(aSfxShootSmg)
-	audio_play_sound(aSfxWeakBullet1, 0, 0)
-	die
+
+var hitnow	= ds_list_create();
+var en_ = instance_place_list(x +xvel, y +yvel, oEnemy, hitnow, 0)
+
+for (var i = 0; i < ds_list_size(hitnow); i++){
+	var h_ = ds_list_find_value(hitnow, i)
+	if (!h_.can_hurt) continue
+		
+	h_.hp -= 1
+	ent_enemyDamage(h_ , 5, 4)
+	hit_reg = 1;
 }
+
+if (hit_reg){
+	audio_stop_sound(aSfxShootSmg)
+	audio_play_sfx(aSfxWeakBullet1, aSfxWeakBullet1, 0.2)
+	die;
+}
+ds_list_destroy(hitnow);
+
 mask_index = sEntityBullet
 
 timer --;
@@ -43,10 +49,14 @@ var dest = function(){
 	audio_play_sfx(aSfxBulletRicochet, aSfxBulletRicochet, 0.05)
 	
 	var fx = instance_create_depth(x, y, -1, oFxPart)
-	if wall_on_side() fx.draw_dir = 0
-	if !wall_on_side() fx.draw_dir = 180
-	if wall_above() fx.draw_dir = 90
-	if on_ground() fx.draw_dir = 270
+	if argument[0] {
+		if wall_on_side() fx.draw_dir = 0
+		if !wall_on_side() fx.draw_dir = 180
+	}
+	else{
+		if wall_above() fx.draw_dir = 90
+		if on_ground() fx.draw_dir = 270
+	}
 	with fx{
 		xvel = 0.;
 		yvel = 0.;

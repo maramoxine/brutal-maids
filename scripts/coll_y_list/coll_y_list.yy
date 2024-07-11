@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"coll_y_list",
   "isCompatibility":false,
   "isDnD":false,

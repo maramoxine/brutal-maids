@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"wall_on_side",
   "isCompatibility":false,
   "isDnD":false,

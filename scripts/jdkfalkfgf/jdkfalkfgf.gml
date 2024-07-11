@@ -5,7 +5,7 @@ function playerStateWeakFollow(){
 // Player just entered this state. These actions will be executed only once.
 if state_is_new{
 	state_is_new = !state_is_new
-	sprite_index = sPlayerPunchIdleA ind_r
+	sprite_index = sPlayerPunchIdleA image_index = 0;
 	image_speed = 1 /2
 	ds_list_clear(hit_by_atk)
 	ground_was = true
@@ -72,7 +72,7 @@ if state_is_new{
 	state_is_new = !state_is_new
 	frame_current = -1
 	sprite_index = sPlayerCrush
-	ind_r
+	image_index = 0;
 	image_speed = 1 /2
 	hit_reg = false
 	hit_reg_did = false
@@ -142,7 +142,7 @@ if state_is_new{
 	state_is_new = !state_is_new
 	frame_current = -1
 	sprite_index = sPlayerSlamBegin
-	ind_r
+	image_index = 0;
 	image_speed = 1 /2
 	ground_was = 1
 	hit_reg = false
@@ -162,7 +162,7 @@ switch(sprite_index){
 	if abs(xaxis) xvel = approach(xvel, 1* xaxis, move_acc_air)
 	if animation_end(){
 		sprite_index = sPlayerSlamFall
-		ind_r
+		image_index = 0;
 		yvel = 1.5
 	}
 	
@@ -172,7 +172,7 @@ switch(sprite_index){
 	if abs(xaxis) xvel = approach(xvel, 1* xaxis, move_acc_air)
 	if grounded || instance_place(x +xvel *2, y +yvel, oEnemy){
 		sprite_index = sPlayerSlamLand
-		ind_r
+		image_index = 0;
 		side_dir = abs(xaxis) ? xaxis : side_dir
 	}
 	

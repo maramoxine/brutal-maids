@@ -1,15 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"Object32",
+  "%Name":"oEnTinhead",
   "eventList":[],
   "managed":true,
-  "name":"Object32",
+  "name":"oEnTinhead",
   "overriddenProperties":[],
   "parent":{
-    "name":"joguinho",
-    "path":"joguinho.yyp",
+    "name":"ENTITIES",
+    "path":"folders/Objects/ENTITIES.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oEnemy",
+    "path":"objects/oEnemy/oEnemy.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -27,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sJulioMontenegro",
+    "path":"sprites/sJulioMontenegro/sJulioMontenegro.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

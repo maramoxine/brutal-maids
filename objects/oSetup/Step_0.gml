@@ -10,10 +10,19 @@ if keyboard_check_pressed(ord("R")) {
 var _bc = true
 if os_browser != browser_not_a_browser _bc = false
 
-if (mouse_check_button_pressed(mb_left))
-	instance_create_depth(mouse_x, mouse_y, 0, oEnImp)
-if (mouse_check_button_pressed(mb_right))
-	instance_create_depth(mouse_x, mouse_y, 0, oEnMissile)
+if (keyboard_check_pressed(ord("2")))
+	en_select = (en_select>=en_max)? 0 : en_select +1;
+if keyboard_check_pressed(ord("3")){
+	var xsp = 0,
+		ysp = 0;
+	while(collision_circle(xsp, ysp, 8, oSolid, 0, 1)){
+		xsp = irandom_range(0, room_width)
+		ysp = irandom_range(32, 32)
+	}
+	instance_create_depth(xsp, ysp, 0, en_ls[| en_select])
+	
+}
+
 if (keyboard_check_pressed(vk_enter)
 	&& STAGEST && room!= 0)
 		room_goto(0)

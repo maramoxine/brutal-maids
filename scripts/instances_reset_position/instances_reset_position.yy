@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"instances_reset_position",
   "isCompatibility":false,
   "isDnD":false,

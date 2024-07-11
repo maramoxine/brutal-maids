@@ -24,32 +24,39 @@ if !keyboard_check(vk_shift){
 	draw_text( vx +8, vy +8, $"hp {hp}")
 	draw_text( vx +24, vy +16 +bfx, $" {ammo}")
 	draw_text( vx +24, vy +16, $"\n/{ammo_max}")
-	draw_set_font(global.font1)
+	if kalt draw_text( vx +8, vy +32, $"[LoCK]")
+	draw_set_font(font2)
 	exit;
 }
 
 #region shit
 
-draw_text(vx +8, vy +8 , $"x {x}")
-draw_text(vx +8, vy +16, $"y {y}")
-draw_text(vx +8, vy +24, $"bbox b {bbox_bottom}")
-draw_text(vx +8, vy +40, $"xvel {xvel} int {xvel_int} frac {xvel_fract}")
-draw_text(vx +8, vy +48, $"yvel {yvel} int {yvel_int} frac {yvel_fract}")
-draw_text(vx +8, vy +64, $"state {script_get_name(state_current)}")
-draw_text(vx +8, vy +72, $"st time {state_timer}")
-draw_text(vx +8, vy +80, $"on ground {grounded} {ground_was}")
-draw_text(vx +8, vy +88, $"aim {atk_dir} {round(atk_dir /90)}")
+//draw_text(vx +8, vy +8 , $"x {x}")
+//draw_text(vx +8, vy +16, $"y {y}")
+//draw_text(vx +8, vy +24, $"bbox b {bbox_bottom}")
+//draw_text(vx +8, vy +40, $"xvel {xvel} int {xvel_int} frac {xvel_fract}")
+//draw_text(vx +8, vy +48, $"yvel {yvel} int {yvel_int} frac {yvel_fract}")
+//draw_text(vx +8, vy +64, $"state {script_get_name(state_current)}")
+//draw_text(vx +8, vy +72, $"st time {state_timer}")
+//draw_text(vx +8, vy +80, $"on ground {grounded} {ground_was}")
+//draw_text(vx +8, vy +88, $"aim {atk_dir} {round(atk_dir /90)}")
 
-draw_text(vx +8, vy +104 ,
+draw_text(vx +8, vy +8 ,
 $"attacked enemies {ds_list_size(hit_by_atk)} - hitnow {ds_list_size(hitnow)}")
-var i = 0;
-repeat(ds_list_size(hit_by_atk)){
+
+
+for (var i = 0; i <(ds_list_size(hit_by_atk)); i++){
 	var d_ =  hit_by_atk[|i]
-	var instd = $"{ds_list_find_index(hit_by_atk, d_)} {d_}"
-	if instance_exists(d_)
-		instd = $"{ds_list_find_index(hit_by_atk, d_)} {object_get_name(d_.object_index)} {d_}"
-	draw_text(vx +8, vy +112 +8*i , instd)
-	i++;
+	var instd = $"{(d_)}"
+	draw_text(vx +8, vy +16 +8*i , instd)
+}
+
+for (var i = 0; i <(ds_list_size(hitnow)); i++){
+	var d_		= ds_list_find_value(hitnow, i);
+	//var refst_	= real(d_);
+	//var hn_		= handle_parse($"ref instance {refst_}")
+	var instd = $"{d_} ({typeof(d_)})"
+	draw_text(vx +112, vy +16 +8*i , instd)
 }
 
 var xo = x+ side_dir *8

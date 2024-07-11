@@ -1,8 +1,12 @@
 /// @description 
 
-surface_resize(application_surface
-, global.gameWidth *global.resolution
-, global.gameHeight *global.resolution)
+if (surface_get_width(application_surface) != global.gameWidth
+|| surface_get_height(application_surface) != global.gameHeight)
+{
+	surface_resize(application_surface
+	, global.gameWidth *global.resolution
+	, global.gameHeight *global.resolution)	
+}
 
 var fsx = 0,
 fsw = global.gameWidth *global.zoom,

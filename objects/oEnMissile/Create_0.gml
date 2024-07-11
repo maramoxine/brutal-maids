@@ -5,7 +5,7 @@ event_inherited()
 hp = 6
 hp_max = hp
 
-move_dir = 0.
+move_dir = irandom(359.)
 move_spd = 2.5
 
 target = noone

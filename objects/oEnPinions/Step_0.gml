@@ -12,11 +12,8 @@ var hit_pl = function(){
 	
 		_pl.state_prev = -1
 		_pl.state_current = playerStateHurt;
-	
-		if _pl.grounded{
-			_pl.xvel = sign(round(xvel /3)) *2
-			_pl.yvel = -2
-		}
+		_pl.xvel = sign(round(xvel /3)) *2
+		_pl.yvel = -2
 	}	
 }
 var pl_do = true
@@ -80,7 +77,7 @@ switch(state_current){
 		if state_is_new{
 			sprite_index = sEnPinionsAntic
 			image_speed = 1 /4
-			ind_r;
+			image_index = 0;;
 			state_is_new = !state_is_new
 			xvel = 0.
 			yvel = 0.
@@ -105,7 +102,7 @@ switch(state_current){
 		if state_is_new{
 			sprite_index = sEnPinionsFly
 			image_speed = 1/2
-			ind_r
+			image_index = 0;
 			
 			state_is_new = !state_is_new
 			vox = audio_play_sfx(aVoxPinionsJump, vox, 0.05)
@@ -161,21 +158,18 @@ switch(state_current){
 	break;
 	case enemyState.dead:
 		if state_is_new{
-			ind_r;
+			image_index = 0;
 			sprite_index = sEnPinionsDead
-			image_speed = 1 /4
+			image_speed = 0
 			vox = audio_play_sfx(aVoxPinionsDie, vox, 0.1)
 			state_is_new = !state_is_new
+			can_hurt = 0
 		}
 		
-		if animation_end()
-		{
-			image_speed = 0.
-			image_index = image_number -1
-		}
 		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
 		
-		if state_timer = 12 die
+		if state_timer = 12 image_index = 1
+		if state_timer = 16 die
 	break;
 }
 

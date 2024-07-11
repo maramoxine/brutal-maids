@@ -1,4 +1,4 @@
-/// @description
+/// @Cada room al empezar
 
 instance_create_depth(0, 0, 0, oBackgronud)
 instance_create_depth(0, 0, 0, oParticles)

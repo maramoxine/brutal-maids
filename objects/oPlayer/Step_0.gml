@@ -24,9 +24,12 @@ kattackdw = keyboard_check(ord("J"))
 kgrab = keyboard_check_pressed(ord("K")) 
 	|| gamepad_button_check_pressed(0, gp_shoulderrb)
 	|| gamepad_button_check_pressed(0, gp_shoulderr)
-kgrabdw = keyboard_check(ord("K")) 
-	|| gamepad_button_check(0, gp_shoulderrb)
-	|| gamepad_button_check_pressed(0, gp_shoulderr)
+//kgrabdw = keyboard_check(ord("K")) 
+//	|| gamepad_button_check(0, gp_shoulderrb)
+//	|| gamepad_button_check(0, gp_shoulderr)
+kalt = keyboard_check(ord("L"))
+	|| gamepad_button_check(0, gp_shoulderlb)
+	|| gamepad_button_check(0, gp_shoulderl)
 
 xaxis	= kright - kleft
 yaxis	= kdown - kup

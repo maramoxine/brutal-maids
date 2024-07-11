@@ -1,11 +1,11 @@
 /// ----------------------
 function game_init(){
 
-global.gameWidth = 480
-global.gameHeight = 320
-global.resolution = 1
-global.zoom = 2
-global.fullscreen = false
+g.gameWidth = 512
+g.gameHeight = 320
+g.resolution = 1
+g.zoom = 2
+g.fullscreen = false
 gpu_set_tex_filter(0);
 }
 
@@ -15,7 +15,7 @@ gpu_set_tex_filter(0);
 #macro draw_solids true
 #macro bbox_depth bbox_bottom -room_height
 #macro die instance_destroy()
-#macro ind_r image_index = 0;
+#macro g global
 
 enum enemyState // constant states
 {

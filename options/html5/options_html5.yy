@@ -1,6 +1,12 @@
 {
   "$GMHtml5Options":"",
   "%Name":"HTML5",
+  "ConfigValues":{
+    "Selectstage":{
+      "option_html5_centregame":"true",
+      "option_html5_localrunalert":"false",
+    },
+  },
   "name":"HTML5",
   "option_html5_allow_fullscreen":true,
   "option_html5_browser_title":"game xd",
@@ -18,7 +24,7 @@
   "option_html5_interpolate_pixels":false,
   "option_html5_jsprepend":"",
   "option_html5_loadingbar":"use_default",
-  "option_html5_localrunalert":true,
+  "option_html5_localrunalert":false,
   "option_html5_outputdebugtoconsole":false,
   "option_html5_outputname":"index.html",
   "option_html5_scale":0,

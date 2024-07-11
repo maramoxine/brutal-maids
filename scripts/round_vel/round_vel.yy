@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"round_vel",
   "isCompatibility":false,
   "isDnD":false,

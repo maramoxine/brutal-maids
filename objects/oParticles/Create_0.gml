@@ -1,9 +1,10 @@
 /// @description 
 
-global.fx = part_system_create();
-part_system_depth(global.fx, -999 );
-global.fx2 = part_system_create();
-part_system_depth(global.fx2, 999 );
+part_fr = layer_create(-10, "part_fr");
+global.fx = part_system_create_layer("part_fr", false)
+
+part_bck = layer_create(10, "part_bck")
+global.fx2 = part_system_create_layer("part_bck", false)
 
 global.fxRocketSmoke = part_type_create()
 part_type_life(global.fxRocketSmoke, 25, 25)
