@@ -169,7 +169,7 @@ switch(state_current){
 		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
 		
 		if state_timer = 12 image_index = 1
-		if state_timer = 16 die
+		if state_timer = 16 instance_destroy()
 	break;
 }
 
