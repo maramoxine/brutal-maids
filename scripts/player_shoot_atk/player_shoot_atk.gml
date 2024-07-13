@@ -1,8 +1,11 @@
 /// ----------------------
 function pl_shoot(){
+	var yax = grounded? min(yaxis, 0): yaxis
+	var xax = (abs(xaxis))? xaxis : side_dir
 	if (atk_buffer) atk_buffer --;
 	if !atk_buffer && !kalt
-		atk_dir = (kdown && !grounded)? 270 : (kup? 90: (side_dir? 0 : 180));
+		atk_dir = point_direction(0, 0, xax, yax)
+		//(kdown && !grounded)? 270 : (kup? 90: (side_dir? 0 : 180));
 	
 	var gx = lengthdir_x(24, atk_dir)
 	var gy = lengthdir_y(24, atk_dir)

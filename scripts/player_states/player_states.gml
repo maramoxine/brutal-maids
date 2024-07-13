@@ -260,8 +260,6 @@ function playerStateHurt(){
 
 	//xvel = 0;
 	//yvel = 0;
-	
-
 	state_current	= playerStateFree
 	invin_frames	= 40
 	
