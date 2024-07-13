@@ -1,7 +1,7 @@
 /// @description
 
 event_inherited()
-hp = 6
+hp = 5
 
 move_spd		= 1.7
 attack_timer	= 60 *4

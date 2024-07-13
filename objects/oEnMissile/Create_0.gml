@@ -2,15 +2,11 @@
 
 event_inherited()
 
-hp = 6
-hp_max = hp
-
 move_dir = irandom(359.)
-move_spd = 2.5
+move_spd = 4.2
 
 target = noone
 active = 0
-timer = 60 *20
 mask_index = sEntitySmall
 
 vox = 0

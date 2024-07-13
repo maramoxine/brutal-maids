@@ -123,7 +123,7 @@ function ent_postState(){
 		_yf = 0 
 		}
 
-	if !move_x(_xf, true, self, _col_ignore)
+	if !move_x(_xf, !_col_ignore, self, _col_ignore)
 	{	
 		if (_funct = 0){
 			xvel		= 0

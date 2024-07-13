@@ -22,10 +22,11 @@ switch(state_current){
 		audio_sound_pitch(vox, 0.5 +(sfxvel *2))
 
 		var _mdir = point_direction(x, y, oPlayer.x ,oPlayer.y);
-		move_dir = angle_lerp(move_dir, _mdir, 1, 8)
+		move_dir = angle_lerp(move_dir, _mdir, 1, 8.5)
 
-		var max_x = lengthdir_x(4, move_dir)
-		var max_y = lengthdir_y(4, move_dir)
+		var max_spd = move_spd
+		var max_x = lengthdir_x(max_spd, move_dir)
+		var max_y = lengthdir_y(max_spd, move_dir)
 
 		var am = 0.1
 		xvel = approach(xvel, max_x, abs(lengthdir_x(am, move_dir)))
@@ -56,11 +57,7 @@ switch(state_current){
 			yvel *= 0.3
 		}
 		
-		var move_fri_final = grounded? move_fri : move_fri_air
-		xvel = approach(xvel, 0, move_fri_final)
-		yvel = yvel>=vsp_max? vsp_max : (grounded? 0 : yvel +grav)
-		move_dir = (move_dir >90 && move_dir <270)? 180 : 0;
-		
+		die;
 	break;
 }
 
@@ -69,7 +66,6 @@ if (!hp) die;
 var mvd_	= round(move_dir /22.5) *22.5
 var px = -lengthdir_x(12, mvd_)
 var py = -lengthdir_y(12, mvd_)
-if (state_current != enemyState.idle)
-	part_particles_create(global.fx2, x +px +xvel, y +py +yvel, global.fxRocketSmoke, 1)
+part_particles_create(global.fx2, x +px +xvel, y +py +yvel, global.fxRocketSmoke, 1)
 
 ent_postState(0, 0, 0, 0)
