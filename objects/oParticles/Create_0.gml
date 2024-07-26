@@ -34,3 +34,7 @@ part_type_sprite(global.fxExplosionSm, sFxExplosionSmall, 1, 1, 0)
 global.fxEnemyDie = part_type_create()
 part_type_life(global.fxEnemyDie, 24, 24)
 part_type_sprite(global.fxEnemyDie, sFxEnemyDie, 1, 1, 0)
+
+global.fxFirePart = part_type_create()
+part_type_life(global.fxFirePart, 24, 24)
+part_type_sprite(global.fxFirePart, sFxFirePart, 1, 1, 0)

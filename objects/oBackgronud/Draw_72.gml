@@ -16,6 +16,7 @@ if !(surface_exists(bg_surface))
 surface_set_target(bg_surface)
 // -draw backgrounds
 draw_sprite_tiled(sBgTest1, 0, lerp(0, vx, -0), lerp(0, vy, -0))
+//draw_sprite_tiled(sBgTest1, 1, lerp(0, vx, -0.3), lerp(0, vy, -0))
 // -end draw backgrounds
 surface_reset_target()
 

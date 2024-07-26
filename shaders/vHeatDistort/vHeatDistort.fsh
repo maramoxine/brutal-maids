@@ -10,7 +10,7 @@ uniform vec2 Texel;
 //Modify the following three consts to change the wave effect to your liking
 const float xSpeed = 3.5;
 const float xFreq = 8.0;
-const float xSize = 6.;
+const float xSize = 3.;
 
 void main()
 {

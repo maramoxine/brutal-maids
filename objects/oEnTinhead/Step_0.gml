@@ -22,7 +22,7 @@ switch(state_current){
 		if (atk_timer) 
 			atk_timer = (mis_ == missile_max)? 
 			atk_timer : atk_timer-1;
-		else if (grounded && (mis_ < missile_max))
+		else if ((mis_ < missile_max))
 		{
 			var bul_ = instance_create_depth(x, y-8, 0, oEnMissile)
 			bul_.yvel = -2.3;
@@ -32,10 +32,15 @@ switch(state_current){
 			vox = audio_play_sfx(aVoxTinheadYell1, vox , 0.3)
 			//ds_list_add(missile, bul_);
 			
-			yvel = -1.3
+			yvel = 1.;
 			yvel_fract = 0.0
 			
 			atk_timer = 60 *irandom_range(3, 6)
+		}
+		
+		if (!y && !yvel){
+			yvel = 1.;
+			yvel_fract = 0.;
 		}
 	break;
 	
@@ -47,4 +52,15 @@ switch(state_current){
 	break;
 }
 
-ent_postState();
+var bn_ = function(dir_){
+	if dir_{
+		xvel = -xvel;
+		xvel_fract = 0.;
+	}
+	else{
+		yvel = -yvel;
+		yvel_fract = 0.;
+	}
+}
+
+ent_postState(0, 0, bn_, 1);

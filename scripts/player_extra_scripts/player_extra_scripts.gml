@@ -126,7 +126,7 @@ function player_sprites(){
 				}
 			break;
 			case 1:
-				image_speed = 1 /4
+				image_speed = 1 /2
 				return sPlayerLandIdle
 			break;
 		}

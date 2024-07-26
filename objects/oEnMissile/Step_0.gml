@@ -46,7 +46,7 @@ switch(state_current){
 				_pl.xvel = xvel
 				_pl.yvel = yvel
 			}
-			die;
+			instance_destroy();
 		}
 	break;
 	case enemyState.idle:
@@ -57,15 +57,16 @@ switch(state_current){
 			yvel *= 0.3
 		}
 		
-		die;
+		instance_destroy();
 	break;
 }
 
-if (!hp) die;
+if (!hp) instance_destroy();
 
-var mvd_	= round(move_dir /22.5) *22.5
-var px = -lengthdir_x(12, mvd_)
-var py = -lengthdir_y(12, mvd_)
-part_particles_create(global.fx2, x +px +xvel, y +py +yvel, global.fxRocketSmoke, 1)
+var mvd_ =move_dir
+var px = -lengthdir_x(8, mvd_)
+var py = -lengthdir_y(8, mvd_)
+part_particles_create(global.fx2, x +px +xvel +(random_range(-2, 2))
+, y +py +yvel +(random_range(-2, 2)), global.fxFirePart, 1)
 
 ent_postState(0, 0, 0, 0)
