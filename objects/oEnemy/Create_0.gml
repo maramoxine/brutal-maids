@@ -8,8 +8,7 @@ hp_max = 0
 side_dir	= 1
 move_fri	= 0.15
 move_fri_air= 0
-grav		= 0.15
-if object_index = oProp grav = 0.12
+grav		= (object_index == oProp)? 0.12 : 0.15;
 vsp_max		= 7
 
 hit_stop	= 0

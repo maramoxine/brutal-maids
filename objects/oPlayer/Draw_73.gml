@@ -42,21 +42,14 @@ if !keyboard_check(vk_shift){
 //draw_text(vx +8, vy +88, $"aim {atk_dir} {round(atk_dir /90)}")
 
 draw_text(vx +8, vy +8 ,
-$"attacked enemies {ds_list_size(hit_by_atk)} - hitnow {ds_list_size(hitnow)}")
-
+//$"attacked enemies {ds_list_size(hit_by_atk)} - hitnow {ds_list_size(hitnow)}"
+$"id {id} ({(real(id))}) {typeof(id)} ({typeof(real(id))})"
+)
 
 for (var i = 0; i <(ds_list_size(hit_by_atk)); i++){
 	var d_ =  hit_by_atk[|i]
-	var instd = $"{(d_)}"
-	draw_text(vx +8, vy +16 +8*i , instd)
-}
-
-for (var i = 0; i <(ds_list_size(hitnow)); i++){
-	var d_		= ds_list_find_value(hitnow, i);
-	//var refst_	= real(d_);
-	//var hn_		= handle_parse($"ref instance {refst_}")
 	var instd = $"{d_} ({typeof(d_)})"
-	draw_text(vx +112, vy +16 +8*i , instd)
+	draw_text(vx +8, vy +16 +8*i , instd)
 }
 
 var xo = x+ side_dir *8

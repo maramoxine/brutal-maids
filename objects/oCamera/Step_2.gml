@@ -10,9 +10,8 @@ var gh = global.gameHeight /2
 
 switch (testmode){
 	case 0:
-		
-	var vcspd = 0.015
-	var _x = target.x +xvel_cam
+	
+	var _x = target.x;
 	var _y = target.bbox_bottom -16;
 	_x = clamp(_x, 0 +gw, room_width -gw )
 	_y = clamp(_y, 0 +gh, room_height -gh )
@@ -20,13 +19,8 @@ switch (testmode){
 	//if (abs(target.xaxis))
 	//	xvel_cam = approach(xvel_cam, sign(target.xaxis) *80, 1.5)
 		
-	if target.grounded
-	|| (target.y <(view_y -rm_y +32))
-	|| (target.y >(view_y +32))
-		vcspd = 0.05
-		
-	view_x = lerp( view_x, _x, 0.05)
-	view_y = lerp( view_y,  _y, vcspd)
+	view_x = lerp( view_x, _x, 0.1)
+	view_y = lerp( view_y,  _y, 0.1)
 		
 	break;
 	case 1:

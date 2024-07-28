@@ -5,6 +5,18 @@ if hit_stop shader_set(vHitFlash)
 draw_sprite_ext(sprite_index, image_index, x, y, 
 side_dir *image_xscale, image_yscale, 0, -1, 1)
 
+if off_screen(-8) && object_get_parent(object_index) != oProp{
+	var vx = camera_get_view_x(view_camera[0]);
+	var vy = camera_get_view_y(view_camera[0]);
+	
+	var xd = clamp(x, vx +8, vx +g.gameWidth -8)
+	var yd = clamp(y, vy +8, vy +g.gameHeight -8)
+	var dd = point_direction(xd, yd, x, y)
+	
+	draw_sprite_ext(sUiArrow, 0, xd, yd
+	, 1, 1, dd, -1, 1)
+}
+
 shader_reset()
 #region debug
 

@@ -1,10 +1,10 @@
  /// @description 
 
 platformer_init()
-xaxis			= 0
-yaxis			= 0
+xaxis			= 0.;
+yaxis			= 0.;
 
-move_spd		= 2
+move_spd		= 2.
 move_acc		= 0.3
 move_fri		= 0.6
 move_acc_air	= 0.15
@@ -21,9 +21,11 @@ vsp_max			= 7
 grav			= 0.13
 coyote			= 0
 
+dash			= 1;
+dash_timer		= 0.;
 hit_by_atk		= ds_list_create();
 hitnow			= ds_list_create();
-hit_reg			= false
+hitreg			= false
 frame_current	= -1
 attack_inp_delay = false
 atk_buffer		= 0

@@ -1,0 +1,12 @@
+wow a journal in a games file nerd-shit much?
+sat 27/7 2024
+
+finally solved the html5 bug of multiple hit detections on melee atk
+(html5/Javascript turns handles into real numbers/structs, found a solution)
+(apply solution to explotions, melee or on-contact attacks and multiple-collisions)
+
+started this log journal thing. there was more changes before this duh
+but those are there in the github commits
+
+now gotta work on dashing, maybe replacing the melee with the grnade
+and gotta work on the wave spawner system.

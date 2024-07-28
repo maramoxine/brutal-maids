@@ -5,7 +5,7 @@
   "applyKerning":0,
   "ascender":9,
   "ascenderOffset":0,
-  "bold":true,
+  "bold":false,
   "canGenerateBitmap":true,
   "charset":0,
   "first":0,
@@ -129,7 +129,7 @@
   "resourceType":"GMFont",
   "resourceVersion":"2.0",
   "sampleText":"abcdef ABCDEF\n0123456789 .,<>\"'&!?\nthe quick brown fox jumps over the lazy dog\nTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG\nDefault character: ▯ (9647)",
-  "sdfSpread":12,
+  "sdfSpread":2,
   "size":7.0,
   "styleName":"Regular",
   "textureGroupId":{

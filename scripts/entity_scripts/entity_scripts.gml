@@ -82,7 +82,7 @@ function ent_postState(){
 		break;
 	}
 
-	entity_loop()
+	//entity_loop()
 	
 	var _en = coll_y(1, oBalloon)
 	if _en && (yvel >=0) && (_en.y+4 >y) && _bounce{

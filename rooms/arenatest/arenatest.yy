@@ -23,7 +23,6 @@
     {"name":"inst_58AD5626","path":"rooms/arenatest/arenatest.yy",},
     {"name":"inst_1BA2C0A8","path":"rooms/arenatest/arenatest.yy",},
     {"name":"inst_2B744FBC","path":"rooms/arenatest/arenatest.yy",},
-    {"name":"inst_6AD19F04","path":"rooms/arenatest/arenatest.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -45,7 +44,6 @@
         {"$GMRInstance":"v1","%Name":"inst_1BA2C0A8","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1BA2C0A8","objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":23.0,"x":672.0,"y":0.0,},
         {"$GMRInstance":"v1","%Name":"inst_2B744FBC","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2B744FBC","objectId":{"name":"oWall","path":"objects/oWall/oWall.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":23.0,"x":0.0,"y":0.0,},
         {"$GMRInstance":"v1","%Name":"inst_36C6D7C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_36C6D7C","objectId":{"name":"oMovingPlatform","path":"objects/oMovingPlatform/oMovingPlatform.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":10.0,"scaleY":1.0,"x":240.0,"y":160.0,},
-        {"$GMRInstance":"v1","%Name":"inst_6AD19F04","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6AD19F04","objectId":{"name":"oEnTinhead","path":"objects/oEnTinhead/oEnTinhead.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":208.0,"y":176.0,},
       ],"layers":[],"name":"Instances_1","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
   ],
   "name":"arenatest",

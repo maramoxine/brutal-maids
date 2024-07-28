@@ -11,6 +11,6 @@ if os_browser != browser_not_a_browser
 draw_set_halign(fa_right)
 draw_text(vx +vw -8, vy +8, _bc)
 draw_text(vx +vw -8, vy +16, $"fps {fps}")
-draw_text(vx +vw -8, vy +24, $"{object_get_name(en_ls[| en_select])}<<[3] [2]->")
+draw_text(vx +vw -8, vy +24, $"{en_select} {object_get_name(en_ls[| en_select])}<<[3] <-[1][2]->")
 
 draw_set_halign(fa_left)

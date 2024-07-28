@@ -20,10 +20,10 @@ for (var i = 0; i < ds_list_size(hitnow); i++){
 		
 	h_.hp -= 1
 	ent_enemyDamage(h_ , 5, 4)
-	hit_reg = 1;
+	hitreg = 1;
 }
 
-if (hit_reg){
+if (hitreg){
 	audio_stop_sound(aSfxShootSmg)
 	audio_play_sfx(aSfxWeakBullet1, aSfxWeakBullet1, 0.2)
 	die;

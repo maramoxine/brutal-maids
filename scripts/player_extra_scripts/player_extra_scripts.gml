@@ -19,11 +19,13 @@ function player_postState(){
 	if _en && !grounded && _en.y+4 >bbox_bottom
 	&& state_current!=playerStateBounce{
 		move_y(_en.bbox_top -bbox_bottom, self)
-		jump_hold = -1.;
-		yvel = jump_spd -0.5;
-		yvel_fract = 0.
+		jump_hold	= -1.;
+		yvel		= jump_spd -0.5;
+		yvel_fract	= 0.
+		dash = 1.;
+		
 		if state_current== playerStateFree {
-			anim = 2;
+			anim		= 2;
 			image_index = 0 
 		}
 		with _en{ 
@@ -85,16 +87,16 @@ function player_sprites(){
 	if (!grounded){
 		switch(anim){
 			case 0:
-				image_speed = 1 /4
+				image_speed = 0.25
 				return sPlayerAir
 			break;
 			break;
 			case 2:
-				image_speed = 1 /2
+				image_speed = 0.5
 				return sPlayerJumpAn
 			break;
 			case 6:
-				image_speed = 1 /2
+				image_speed = 0.5
 				return sPlayerAirBumpAn
 			break
 		}
@@ -104,29 +106,29 @@ function player_sprites(){
 			case 0:
 				if !(walk || abs(_xaxis)){
 					if (kup){
-						image_speed = 1 /4
+						image_speed = 0.25
 						return sPlayerIdleUp
 					}
 					else{
-						image_speed = 1 /4
+						image_speed = 0.25
 						return sPlayerIdle
 					}
 				}
 				else{
 					if (frame_current != _frm)
 						switch(_frm){
-							case 0:
+							case 0: case 3:
 							part_particles_create(global.fx2, x, bbox_bottom -2, global.fxWalk, 1)
 							audio_play_sfx(aSfxPlayerStep, -1, 0.3)
 							break;
 					}
-					frame_current = _frm
-					image_speed = 1/2 
+					frame_current = _frm;
+					image_speed = 0.5
 					return sPlayerWalk
 				}
 			break;
 			case 1:
-				image_speed = 1 /2
+				image_speed = 0.5
 				return sPlayerLandIdle
 			break;
 		}

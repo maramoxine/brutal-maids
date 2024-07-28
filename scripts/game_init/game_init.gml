@@ -1,8 +1,8 @@
 /// ----------------------
 function game_init(){
 
-g.gameWidth = 512
-g.gameHeight = 320
+g.gameWidth = 512.;
+g.gameHeight = 320.;
 g.resolution = 1
 g.zoom = 2
 g.fullscreen = false

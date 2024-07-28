@@ -8,24 +8,23 @@ function playerStateFree(){
 	// on land---------------------------
 	if (grounded){
 	
-		coyote = 11
-	
+		coyote	= 11.
+		dash	= 1;
 		if (kdown&& kjump) // go down platform
-			if on_platform() && (!on_wall() || on_slope()){
-				move_y(1, self, 1)
-				coyote = 0
-				yvel = 1.
-				yvel_fract = 0.0
+		&& on_platform() && (!on_wall() || on_slope())
+		{
+			move_y(1, self, 1)
+			coyote		= 0
+			yvel		= 1.
+			yvel_fract	= 0.
 		}
-		
 		if (!ground_was){
 			audio_play_sound(aSfxLand, 0, 0)
-			anim = 1
-			image_index = 0;
+			anim		= 1
+			image_index = 0.;
 		}
 	}
-
-	ground_was = grounded
+	ground_was = grounded;
 
 	// cheating the jump input
 
@@ -81,33 +80,10 @@ function playerStateFree(){
 			grounded = false
 		}
 		coyote --;
-	}/*
-	else{ 
-		// wall jump ---------------------------------
-		if kjump{
-		
-			var wd = wall_on_side(4)
-			//var _en = instance_place(x +xvel, y +6 +max(0 ,yvel), oEnemy)
-			//var _r = (_en && _en.bbox_top +vsp_max >bbox_bottom) && yvel>_en.yvel
-		
-			if wd != 0 && (anim != 3){
-				if (xaxis = wd){
-					yvel = jump_spd
-					xvel = -move_spd *wd
-				}
-				else{
-					yvel = jump_wallspd
-					xvel = move_walljump *wd
-				}
-				jump_hold = 30
-				audio_play_sound(aSfxJump, 0, 0)
-				anim = 3 ind_r
-				side_dir = -wd
-			}
-		}
 	}
-	*/
+	
 	// jump stop ------------------------
+	
 	if jump_hold > -1{
 		if !kjumpdw jump_hold = 0
 		if yvel <0 && !jump_hold yvel *= 0.3
@@ -118,9 +94,8 @@ function playerStateFree(){
 	#region attacks --------------
 	pl_shoot();
 
-	if (kgrab || attack_inp_delay){
-		state_current = playerStateWeakJab
-		attack_inp_delay = 0
+	if (kgrab && dash){
+		state_current = playerStateDash;
 		exit;
 	}
 	#endregion
@@ -130,81 +105,77 @@ function playerStateFree(){
 }
 
 /// ----------------------
-function playerStateWeakJab(){
+function playerStateDash(){
 
 	if state_is_new{
 		state_is_new = !state_is_new;
-		sprite_index = sPlayerPunchIdleA image_index = 0;
-		image_speed = 1 /2
-		ds_list_clear(hit_by_atk);
-		ds_list_clear(hitnow);
-		ground_was = true
-		hit_reg = 0
+		sprite_index = sPlayerDash
+		image_index = 0;
+		image_speed = 0;
+		//ds_list_clear(hit_by_atk);
+		//ds_list_clear(hitnow);
+		hitreg = 0
 		side_dir = abs(xaxis) ? xaxis : side_dir
 		
-		audio_play_sfx(aSfxPlayerSlash1);
-	}
-	var _xaxis = xaxis
-
-	var sl = on_slope()
-	var ts = move_spd;
-
-	if sl && !(sl.object_index == oSlopeWall
-	|| side_dir==sign(sl.image_xscale))
-		ts = lengthdir_x(move_spd, 52 /abs(sl.image_xscale))
-	if abs(_xaxis)
-	{
-		var _l = !(sign(xvel)==xaxis && abs(xvel)>move_spd && !grounded) 
-		var move_acc_final = grounded? move_acc : move_acc_air
-		if _l xvel = approach(xvel, ts* xaxis, move_acc_final)
-	}
-	else{
-		var move_fri_final = grounded? move_fri : move_fri_air
-		xvel = approach(xvel, 0, move_fri_final)
-	}
-	
-	yvel = yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav);
-	var xo = x+ side_dir *8;
-	
-	if (state_timer >= 0)
-		{
+		dash --;
+		xvel = side_dir* 4.5;
+		xvel_fract = 0.;
+		yvel = min(yvel, 0);
+		yvel_fract = 0.;
 		
-		var hits = collision_rectangle_list(xo, bbox_top, 16* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
-		for (var i = 0; i <(ds_list_size(hitnow)); i++){
-			var h_ = hitnow[| i];
-			if (ds_list_find_index(hit_by_atk, h_) == -1){
-				
-				if (false == h_.can_hurt)
-					continue;
-				ds_list_add(hit_by_atk, hitnow[| i]);
-				
-				var dirv_ = point_direction(x, y, x +side_dir *abs(xvel) +side_dir, y +yvel)
-				,	hispd_ = (h_.grounded) ? 3 : 4.2;
-				h_.xvel = lengthdir_x(hispd_, dirv_)
-				h_.yvel = lengthdir_y(hispd_ +.5, dirv_);
-				
-				ent_enemyDamage(h_, stunw, hittw)
-				audio_stop_sound(aSfxWeakHit1) 
-				audio_play_sound(aSfxWeakHit1, 0, 0)
-					
-				if !hit_reg{
-					yvel = grounded ? yvel : -1
-					xvel = 0;
-					audio_stop_sound(aSfxPlayerSlash1)
-					hit_reg = 1
-				}
-			}	
-		}
+		audio_play_sfx(aSfxPlayerSlash1, aSfxPlayerSlash1, 0);
 	}
+
+	yvel = hitreg? (yvel>=vsp_max? vsp_max : (grounded? yvel : yvel +grav))
+	: approach(yvel, 0, 0.4);
 	
-	if (kgrab)
-		attack_inp_delay = true
+	//var xo = x+ side_dir *8;
+	//var hits = collision_rectangle_list(xo, bbox_top, 
+	//16* side_dir +xo, bbox_bottom, oEnemy, 0, 1, hitnow, 0);
+		
+	//for (var i = 0; i <(ds_list_size(hitnow)); i++)
+	//{
+	//	var h_ = real(hitnow[| i]); // H_ IS THE CURRENT HITNOW BUT IN ITS ~integer~ FORM
+	//	// THUS THE DS FIND INDEX CHECKS FOR AN ~integer~ INSTEAD OF STRUCTS
+	//	// im bursting all the veins on my ybrain rn
+	//	if (ds_list_find_index(hit_by_atk, h_) == -1){ // CHECK FOR H_
+				
+	//		if (false == h_.can_hurt)
+	//			continue;
+	//		ds_list_add(hit_by_atk, real(hitnow[| i])); // PUT THE HITNOW CURRENT INDEX AS AN ~integer~
+	//		// I NEVER THOUGHT HOW THE real FUNCTION REALLYWOULD DO SOMETHING IN THIS
+	//		// I JUST CRACKED THIS IDEA NOW AND IT FUCKING WORKED
+	//		// in the long run ths shit isnt even that important project wise
+	//		// but i learnt how to solve this problem that the html5 gave me
+	//		// ds list creating structs out of handles is kinda worrying
+	//		// bc its definetly gonna bring more problems like this in the future
+	//		// but now it doesnt matter that much kuz i have kind of an idea for solutions
+	//		// i will pray to every god after this
+				
+	//		var dirv_ = point_direction(x, y, x +side_dir *abs(xvel) +side_dir, y +yvel)
+	//		,	hispd_ = (h_.grounded) ? 3 : 4.2;
+	//		h_.xvel = lengthdir_x(hispd_, dirv_)
+	//		h_.yvel = lengthdir_y(hispd_ +.5, dirv_);
+				
+	//		ent_enemyDamage(h_, stunw, hittw)
+	//		audio_stop_sound(aSfxWeakHit1) 
+	//		audio_play_sound(aSfxWeakHit1, 0, 0)
+					
+	//		if !hitreg{
+	//			yvel = grounded ? yvel : -1
+	//			xvel = 0;
+	//			audio_stop_sound(aSfxPlayerSlash1)
+	//			hitreg = 1
+	//		}
+	//	}	
+	//}
 	
 	// Change State -----------------------------
-	if (animation_end()){
-		state_current = playerStateFree
-		anim = 0
-		exit
+	if (state_timer == 10.){
+		state_current = playerStateFree;
+		anim = 0.;
+		xvel = clamp(xvel, -move_spd, move_spd);
+		exit;
 	}
 }
 

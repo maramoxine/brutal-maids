@@ -1,7 +1,7 @@
 {
   "$GMNotes":"",
-  "%Name":"todo",
-  "name":"todo",
+  "%Name":"journal",
+  "name":"journal",
   "parent":{
     "name":"joguinho",
     "path":"joguinho.yyp",

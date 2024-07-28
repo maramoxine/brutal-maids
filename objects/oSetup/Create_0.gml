@@ -12,8 +12,13 @@ en_ls = ds_list_create()
 ds_list_add(en_ls,
 oEnImp,
 oEnPinions,
+oEnTinhead,
 oEnMissile,
-oEnBomb)
+oEnBomb,
+oEnBeachball,
+oEnTrashCan,
+oEnIronBoard
+);
 
 en_select = 0
 en_max = ds_list_size(en_ls) -1
