@@ -7,9 +7,9 @@ if (state_current == -1) {
 	//draw_set_font(font2)
 	//draw_set_halign(fa_left)
 	
-	if beep shader_set(vHitFlash)
+	if beep shader_set(vLightFlash)
 }
-if hit_stop shader_set(vHitFlash)
+shd_hitten();
 
 draw_sprite_ext(sprite_index, image_index, x, y, 
 side_dir *image_xscale, image_yscale, 0, -1, 1)

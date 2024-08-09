@@ -16,8 +16,8 @@ if (keyboard_check_pressed(ord("1")))
 if (keyboard_check_pressed(ord("2")))
 	en_select = (en_select >=en_max)? 0 : en_select +1;
 if keyboard_check_pressed(ord("3")){
-	var xsp = 0,
-		ysp = 0;
+	var xsp = irandom_range(0, room_width),
+		ysp = irandom_range(0, room_height);
 	while(collision_circle(xsp, ysp, 8, oSolid, 0, 1)){
 		xsp = irandom_range(0, room_width);
 		ysp = irandom_range(0, room_height);

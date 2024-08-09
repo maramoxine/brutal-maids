@@ -6,9 +6,9 @@ function pl_shoot(){
 	if !atk_buffer && !kalt
 		atk_dir = (kdown && !grounded)? 270 : (kup? 90: (side_dir? 0 : 180));
 	
-	var gx = lengthdir_x(24, atk_dir);	
-	var gy = lengthdir_y(24, atk_dir);
-	var aim_spread = 7.5;
+	var gx = lengthdir_x(16, atk_dir);	
+	var gy = lengthdir_y(16, atk_dir);
+	var aim_spread = 19. /2.;
 	
 	if (kattackdw && !atk_buffer && ammo)
 	{
@@ -33,7 +33,7 @@ function pl_shoot(){
 			fade = 0.
 		}
 		
-		atk_fx = 1.;
+		atk_fx = 1.6;
 		atk_buffer = atk_buffer_max;
 		audio_play_sfx(aSfxShootSmg, -1, 0.07)
 		//switch(round(atk_dir /90))

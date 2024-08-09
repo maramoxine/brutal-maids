@@ -13,5 +13,4 @@ if (!window_get_fullscreen()
 	//, global.gameHeight *global.resolution)
 	window_set_position(display_get_width()/2 - ((global.gameWidth *global.zoom) /2),
 	display_get_height()/2 - ((global.gameHeight *global.zoom) /2)) 
-	
 }

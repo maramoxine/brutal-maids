@@ -1,6 +1,7 @@
 /// @description Insert description here
 
-if hit_stop shader_set(vHitFlash)
+if (tick_mode && (floor(timer /2) mod 2)) shader_set(vLightFlash);
+shd_hitten();
 
 var xsc_ = 1
 //if move_dir>90 && move_dir <270 xsc_ = -3

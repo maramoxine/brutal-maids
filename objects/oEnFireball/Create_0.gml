@@ -10,4 +10,4 @@ timer = 60 *3
 depth = -1;
 mask_index = sEntityBullet;
 
-image_speed = 1/2
+image_speed = 0.25;

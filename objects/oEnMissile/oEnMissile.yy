@@ -12,8 +12,8 @@
   "name":"oEnMissile",
   "overriddenProperties":[],
   "parent":{
-    "name":"ENTITIES",
-    "path":"folders/Objects/ENTITIES.yy",
+    "name":"PROJECTILES",
+    "path":"folders/Objects/ENTITIES/PROJECTILES.yy",
   },
   "parentObjectId":{
     "name":"oProp",

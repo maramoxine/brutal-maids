@@ -9,8 +9,8 @@
   "name":"oEnBeachball",
   "overriddenProperties":[],
   "parent":{
-    "name":"ENTITIES",
-    "path":"folders/Objects/ENTITIES.yy",
+    "name":"PROPS",
+    "path":"folders/Objects/ENTITIES/PROPS.yy",
   },
   "parentObjectId":{
     "name":"oProp",

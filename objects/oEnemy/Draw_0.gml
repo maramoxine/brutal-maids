@@ -1,6 +1,6 @@
 /// @description 
 
-if hit_stop shader_set(vHitFlash)
+shd_hitten();
 
 draw_sprite_ext(sprite_index, image_index, x, y, 
 side_dir *image_xscale, image_yscale, 0, -1, 1)
@@ -36,6 +36,5 @@ draw_set_color(-1)
 draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, 1)
 draw_text(x, y -32, $"!{state_current}! {state_timer} \n{id} {real(id)}")
 draw_set_halign(fa_left)
-
 
 #endregion

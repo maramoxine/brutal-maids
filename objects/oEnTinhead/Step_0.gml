@@ -49,7 +49,7 @@ switch(state_current){
 }
 
 var bn_ = function(dir_){
-	var sf_ = aSfxBumpHead;
+	var sf_ = aSfxEnemySquelch;
 	if dir_{
 		move_xdir = -wall_on_side();
 		xvel *= -1.;

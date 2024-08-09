@@ -31,7 +31,21 @@ switch(state_current){
 		var am = 0.1
 		xvel = approach(xvel, max_x, abs(lengthdir_x(am, move_dir)))
 		yvel = approach(yvel, max_y, abs(lengthdir_y(am, move_dir)))
-
+		
+		if (tick_mode){
+			if (timer) timer--;
+			else instance_destroy();
+		}
+		else if (point_distance(x, y, oPlayer.x, oPlayer.y) <=32)
+			tick_mode = 1;
+		
+		var _ins = instance_place(x, y, object_index)
+		if (_ins){
+			var dr = point_direction(x, y, _ins.x, _ins.y)
+			_ins.xvel += lengthdir_x(0.25, dr)
+			_ins.yvel += lengthdir_y(0.25, dr)
+		}
+		
 		var _pl = instance_place(x, y, oPlayer)
 		if (_pl && _pl.can_hurt){
 	
@@ -63,10 +77,10 @@ switch(state_current){
 
 if (!hp) instance_destroy();
 
-var mvd_ =move_dir
-var px = -lengthdir_x(8, mvd_)
-var py = -lengthdir_y(8, mvd_)
-part_particles_create(global.fx2, x +px +xvel +(random_range(-2, 2))
-, y +py +yvel +(random_range(-2, 2)), global.fxFirePart, 1)
+//var mvd_ =move_dir
+//var px = -lengthdir_x(8, mvd_)
+//var py = -lengthdir_y(8, mvd_)
+//part_particles_create(global.fx2, x +px +xvel +(random_range(-2, 2))
+//, y +py +yvel +(random_range(-2, 2)), global.fxFirePart, 1)
 
 ent_postState(0, 0, 0, 0)

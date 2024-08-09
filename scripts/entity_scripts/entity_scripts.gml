@@ -6,6 +6,18 @@
 #macro hittm 35
 #macro hitts 48
 
+/// @func shd_hitten([DOESNT_COME_W/_SHADER_RESET])
+function shd_hitten(){
+	
+	var d = (object_get_parent(object_index) != oEnemy
+	&& object_get_parent(object_index) != oProp)
+	if (!d) if (!hit_stop) exit;
+	
+	var u_time = shader_get_uniform(vHitten, "Time")
+	shader_set(vHitten);
+	shader_set_uniform_f(u_time, current_time)
+}
+
 /// ----------------------
 function ent_state_machine(){
 	state_is_new		= state_prev != state_current
@@ -82,7 +94,7 @@ function ent_postState(){
 		break;
 	}
 
-	//entity_loop()
+	entity_loop()
 	
 	var _en = coll_y(1, oBalloon)
 	if _en && (yvel >=0) && (_en.y+4 >y) && _bounce{

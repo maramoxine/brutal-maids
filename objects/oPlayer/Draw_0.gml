@@ -6,9 +6,9 @@ gun_rfx = angle_lerp(gun_rfx, atk_dir, 0.6, 360)
 var wp_walk = 0
 if sprite_index = sPlayerWalk
 	switch(floor(image_index)){
-		case 0: wp_walk = -3  break;
-		case 1: wp_walk = -2  break;
-		case 2: wp_walk = 1;
+		case 0: case 3: wp_walk = 1  break;
+		case 1: case 4: wp_walk = -3  break;
+		case 2: case 5: wp_walk = -2;
 	}	
 
 var gx = lengthdir_x(10, gun_rfx) +side_dir *3
